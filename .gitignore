@@ -12,6 +12,7 @@ yarn-error.log
 
 /.idea
 
+/public/administration
 /public/js
 /public/css
 /public/fonts

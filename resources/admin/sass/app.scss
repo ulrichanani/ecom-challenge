@@ -1,0 +1,16 @@
+
+@import '../css/main.css';
+
+div.app-title h1>i {
+    font-size: 75%;
+    margin-right: 5px;
+}
+
+img.product-image.img-thumbnail {
+    max-height: 200px;
+}
+
+#order-details td {
+    padding: 5px;
+    margin: 5px;
+}
