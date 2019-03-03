@@ -1,6 +1,5 @@
 <template>
     <div>
-        <FlashMessage></FlashMessage>
         <div class="card">
             <div class="card-body">
                 <!-- Main content -->

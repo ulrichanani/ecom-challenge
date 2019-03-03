@@ -27,6 +27,7 @@
         </div>
     </div>
 
+    <flash-message-component></flash-message-component>
     @include('layouts.flash-messages')
 
     @yield('content')
