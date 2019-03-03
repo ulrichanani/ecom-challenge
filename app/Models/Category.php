@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Department extends Model
+class Category extends Model
 {
     /*
      * ELOQUENT CONFIG
@@ -12,22 +12,22 @@ class Department extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'department_id', 'name', 'description',
+        'category_id', 'department_id', 'name', 'description',
     ];
 
-    protected $table = 'department';
+    protected $table = 'category';
 
     public function getKeyName()
     {
-        return 'department_id';
+        return 'category_id';
     }
 
     /*
      * RELATIONS
      */
-    public function categories()
+    public function department()
     {
-        return $this->hasMany(Category::class, 'department_id');
+        return $this->belongsTo(Department::class, 'department_id');
     }
 
     /*
@@ -35,6 +35,6 @@ class Department extends Model
      */
     public function getIdAttribute()
     {
-        return $this->department_id;
+        return $this->category_id;
     }
 }

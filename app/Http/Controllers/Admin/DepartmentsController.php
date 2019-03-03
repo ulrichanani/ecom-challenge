@@ -9,8 +9,8 @@ use App\Http\Resources\DepartmentResource;
 use App\Models\Department;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
 {
@@ -29,9 +29,10 @@ class DepartmentsController extends Controller
     private $redirect;
 
     /**
-     * DepartmentController constructor.
-     * @param ViewFactory $view
-     * @param Redirector  $redirect
+     * Constructor.
+     * @param ViewFactory     $view
+     * @param Redirector      $redirect
+     * @param ResponseFactory $response
      */
     public function __construct(ViewFactory $view, Redirector $redirect, ResponseFactory $response)
     {
@@ -41,8 +42,9 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * Display the departments page.
      *
+     * @param Department $department
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()
@@ -62,20 +64,10 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @param StoreDepartmentRequest $request
+     * @return DepartmentResource
      */
     public function store(StoreDepartmentRequest $request)
     {
@@ -88,25 +80,14 @@ class DepartmentsController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show a resource.
      *
-     * @param  \App\Models\Department $department
-     * @return \Illuminate\Http\Response
+     * @param Department $department
+     * @return DepartmentResource
      */
     public function show(Department $department)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Department $department
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Department $department)
-    {
-        //
+        return new DepartmentResource($department);
     }
 
     /**

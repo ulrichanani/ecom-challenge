@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col">
                             <h3 class="mt-1 mb-2">
-                                Add / edit department
+                                Add / edit category
                             </h3>
                             <form action="" @submit.prevent="saveRecord">
                                 <div class="row">
@@ -30,9 +30,9 @@
                                     </div>
                                     <div class="col-12">
                                         <input type="submit" value="Save" class="btn btn-primary"
-                                        :disabled="formData.name.length === 0">
+                                               :disabled="formData.name.length === 0">
                                         <input type="button" value="Cancel" class="btn btn-primary"
-                                               @click="resetForm">
+                                            @click="resetForm">
                                     </div>
                                 </div>
                             </form>
@@ -42,24 +42,29 @@
                     <div class="row">
                         <div class="col">
                             <h3 class="mt-5 mb-5">
-                                List of departments
+                                List of categories for department : {{ department.name || '' }}
                             </h3>
-                            <table class="table dataTable">
+                            <div class="mb-3">
+                                <a class="btn btn-outline-primary btn-sm" :href="`/admin/departments/`">
+                                    <i class="fa fa-arrow-left"></i> Go back</a>
+                            </div>
+                            <h6 v-if="categories.length === 0">There's no category yet in this department</h6>
+                            <table class="table dataTable" v-if="categories.length > 0">
                                 <thead>
                                 <th>Name</th>
                                 <th>Description</th>
                                 <th class="actions"></th>
                                 </thead>
                                 <tbody>
-                                <department-component v-for="department in departments"
-                                                      v-bind:key="department.department_id"
-                                                      @edit="editRecord"
-                                                      :department="department"></department-component>
+                                <category-component v-for="category in categories"
+                                                    v-bind:key="category.category_id"
+                                                    @edit="editRecord"
+                                                    :category="category"></category-component>
                                 </tbody>
                             </table>
 
                             <!-- NAV -->
-                            <nav aria-label="Page navigation example">
+                            <nav aria-label="Page navigation example" v-if="categories.length > 0">
                                 <ul class="pagination">
                                     <li v-bind:class="{disabled: !pagination.prev_page_url}"
                                         @click="pagination.prev_page_url ? fetchRecords(pagination.prev_page_url) : ''"
@@ -85,26 +90,38 @@
 
 <script>
     export default {
+        props: {
+            department_id: Number
+        },
+
         data() {
             return {
                 formData: {
+                    category_id: null,
+                    name: '',
+                    description: ''
+                },
+                categories: [],
+                department: {
                     department_id: null,
                     name: '',
                     description: ''
                 },
-                departments: [],
                 pagination: {},
-                errors: {}
+                errors: {},
+                base_url: String,
             }
         },
 
         created() {
+            this.base_url = `/admin/departments/${this.department_id}/categories/`
             this.fetchRecords();
+            this.fetchDepartment();
         },
 
         methods: {
             saveRecord() {
-                if(this.formData.department_id !== null) {
+                if (this.formData.category_id !== null) {
                     this.updateRecord()
                 } else {
                     this.addRecord()
@@ -112,52 +129,56 @@
             },
 
             addRecord() {
-                axios.post('/admin/departments', this.formData)
+                axios.post(this.base_url, this.formData)
                     .then(({data}) => {
                         this.errors = {}
                         this.resetForm()
-                        this.departments.push(data.data)
-                        this.flashMessage.success({message: 'New department added succefully !'})
+                        this.categories.push(data.data)
+                        this.flashMessage.success({message: 'New category added succefully !'})
                     })
                     .catch(err => {
                         let data = err.response.data
                         this.errors = data.errors || {}
-                        /*if (data.message) {
-                            this.flashMessage.error({message: data.message})
-                        }*/
                     })
             },
 
             updateRecord() {
-                let url = '/admin/departments/' + this.formData.department_id
+                let url = this.base_url + this.formData.category_id
                 axios.put(url, this.formData)
                     .then(({data}) => {
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Department updated succefully !'})
+                        this.flashMessage.success({message: 'Category updated succefully !'})
                     })
                     .catch(err => {
                         let data = err.response.data
                         this.errors = data.errors || {}
-                        /*if (data.message) {
-                            this.flashMessage.error({message: data.message})
-                        }*/
                     })
             },
 
             fetchRecords(page_url) {
-                page_url = page_url || '/admin/departments/list';
+                page_url = page_url || this.base_url + 'list';
                 axios.get(page_url)
                     .then(({data}) => {
-                        this.departments = data.data
+                        this.categories = data.data
                         this.makePagination(data.meta, data.links);
                     })
                     .catch(err => console.log(err))
             },
 
+            fetchDepartment() {
+                let page_url = `/admin/departments/${this.department_id}`
+                axios.get(page_url)
+                    .then(({data}) => {
+                        this.department = data.data
+                    })
+                    .catch(err => console.log(err))
+            },
+
             editRecord(record) {
-                this.formData = Object.assign({}, record);;
+                this.formData = Object.assign({}, record);
+                ;
             },
 
             makePagination(meta, links) {
@@ -172,7 +193,7 @@
             },
 
             resetForm() {
-                this.formData = {department_id: null, name: '', description: ''}
+                this.formData = {category_id: null, name: '', description: ''}
             }
         }
     }
