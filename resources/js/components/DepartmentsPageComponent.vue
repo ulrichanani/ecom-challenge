@@ -157,7 +157,8 @@
             },
 
             editRecord(record) {
-                this.formData = Object.assign({}, record);;
+                this.resetForm()
+                this.formData = Object.assign({}, record);
             },
 
             makePagination(meta, links) {
@@ -172,7 +173,9 @@
             },
 
             resetForm() {
+                this.errors = {}
                 this.formData = {department_id: null, name: '', description: ''}
+                document.getElementById('name').focus();
             }
         }
     }

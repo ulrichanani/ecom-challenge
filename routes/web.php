@@ -26,12 +26,17 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
     Route::namespace('Admin')->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
-        // DEPARTMENTS
+        // Departments
         Route::get('/departments/list', 'DepartmentsController@list')->name('departments.list');
-        Route::resource('/departments', 'DepartmentsController');
+        Route::resource('/departments', 'DepartmentsController')->except(['create', 'edit']);
 
-        // CATEGORIES
-        Route::get('/departments/{department}/categories/list', 'CategoriesController@list')->name('departments.categories.list');
-        Route::resource('departments.categories', 'CategoriesController');
+        // Categories
+        Route::get('/departments/{department}/categories/list', 'CategoriesController@list')
+            ->name('departments.categories.list');
+        Route::resource('departments.categories', 'CategoriesController')->except(['create', 'edit']);
+
+        // Attributes
+        Route::get('/attributes/list', 'AttributesController@list')->name('attributes.list');
+        Route::resource('/attributes', 'AttributesController')->except(['create', 'edit']);
     });
 });

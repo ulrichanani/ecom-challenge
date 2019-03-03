@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Categories\StoreCategoryRequest;
+use App\Http\Requests\Categories\UpdateCategoryRequest;
+use App\Http\Requests\Departments\UpdateDepartmentRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\Department;
@@ -60,7 +62,6 @@ class CategoriesController extends Controller
      */
     public function list(Department $department)
     {
-        dump($department, $department->categories);
         $categories = $department->categories()->orderBy('name', 'asc')->paginate(25);
         return CategoryResource::collection($categories);
     }
@@ -103,7 +104,7 @@ class CategoriesController extends Controller
      * @param  \App\Models\Category     $category
      * @return CategoryResource
      */
-    public function update(Request $request, Department $department, Category $category)
+    public function update(UpdateCategoryRequest $request, Department $department, Category $category)
     {
         $category->update([
             'name' => $request->input('name'),

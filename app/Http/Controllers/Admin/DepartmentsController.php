@@ -44,7 +44,6 @@ class DepartmentsController extends Controller
     /**
      * Display the departments page.
      *
-     * @param Department $department
      * @return \Illuminate\Http\JsonResponse
      */
     public function index()

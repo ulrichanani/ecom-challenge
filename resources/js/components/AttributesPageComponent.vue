@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col">
                             <h3 class="mt-1 mb-2">
-                                Add / edit category
+                                Add / edit attribute
                             </h3>
                             <form action="" @submit.prevent="saveRecord">
                                 <div class="row">
@@ -22,17 +22,11 @@
                                             <strong>{{ errors.name[0] }}</strong>
                                         </span>
                                     </div>
-                                    <div class="col form-group">
-                                        <label for="description" class="control-label">Description</label>
-                                        <textarea type="text" name="description" id="description" class="form-control"
-                                                  maxlength="999"
-                                                  v-model="formData.description"></textarea>
-                                    </div>
                                     <div class="col-12">
                                         <input type="submit" value="Save" class="btn btn-primary"
-                                               :disabled="formData.name.length === 0">
+                                        :disabled="formData.name.length === 0">
                                         <input type="button" value="Cancel" class="btn btn-primary"
-                                            @click="resetForm">
+                                               @click="resetForm">
                                     </div>
                                 </div>
                             </form>
@@ -42,29 +36,23 @@
                     <div class="row">
                         <div class="col">
                             <h3 class="mt-5 mb-5">
-                                List of categories for department : {{ department.name || '' }}
+                                List of attributes
                             </h3>
-                            <div class="mb-3">
-                                <a class="btn btn-link" :href="`/admin/departments/`">
-                                    <i class="fa fa-arrow-left"></i> Go back to departments</a>
-                            </div>
-                            <h6 v-if="categories.length === 0">There's no category yet in this department</h6>
-                            <table class="table dataTable" v-if="categories.length > 0">
+                            <table class="table dataTable">
                                 <thead>
                                 <th>Name</th>
-                                <th>Description</th>
                                 <th class="actions"></th>
                                 </thead>
                                 <tbody>
-                                <category-component v-for="category in categories"
-                                                    v-bind:key="category.category_id"
-                                                    @edit="editRecord"
-                                                    :category="category"></category-component>
+                                <attribute-component v-for="attribute in attributes"
+                                                      v-bind:key="attribute.attribute_id"
+                                                      @edit="editRecord"
+                                                      :attribute="attribute"></attribute-component>
                                 </tbody>
                             </table>
 
                             <!-- NAV -->
-                            <nav aria-label="Page navigation example" v-if="categories.length > 0">
+                            <nav aria-label="Page navigation example">
                                 <ul class="pagination">
                                     <li v-bind:class="{disabled: !pagination.prev_page_url}"
                                         @click="pagination.prev_page_url ? fetchRecords(pagination.prev_page_url) : ''"
@@ -90,38 +78,27 @@
 
 <script>
     export default {
-        props: {
-            department_id: Number
-        },
-
         data() {
             return {
                 formData: {
-                    category_id: null,
-                    name: '',
-                    description: ''
+                    attribute_id: null,
+                    name: ''
                 },
-                categories: [],
-                department: {
-                    department_id: null,
-                    name: '',
-                    description: ''
-                },
+                attributes: [],
                 pagination: {},
                 errors: {},
-                base_url: String,
+                base_url: ''
             }
         },
 
         created() {
-            this.base_url = `/admin/departments/${this.department_id}/categories/`
+            this.base_url = '/admin/attributes/'
             this.fetchRecords();
-            this.fetchDepartment();
         },
 
         methods: {
             saveRecord() {
-                if (this.formData.category_id !== null) {
+                if(this.formData.attribute_id !== null) {
                     this.updateRecord()
                 } else {
                     this.addRecord()
@@ -129,12 +106,12 @@
             },
 
             addRecord() {
-                axios.post(this.base_url, this.formData)
+                axios.post(this.base_url , this.formData)
                     .then(({data}) => {
                         this.errors = {}
                         this.resetForm()
-                        this.categories.push(data.data)
-                        this.flashMessage.success({message: 'New category added succefully !'})
+                        this.attributes.push(data.data)
+                        this.flashMessage.success({message: 'New attribute added succefully !'})
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -143,13 +120,13 @@
             },
 
             updateRecord() {
-                let url = this.base_url + this.formData.category_id
+                let url = this.base_url + this.formData.attribute_id
                 axios.put(url, this.formData)
                     .then(({data}) => {
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Category updated succefully !'})
+                        this.flashMessage.success({message: 'Attribute updated succefully !'})
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -161,17 +138,8 @@
                 page_url = page_url || this.base_url + 'list';
                 axios.get(page_url)
                     .then(({data}) => {
-                        this.categories = data.data
+                        this.attributes = data.data
                         this.makePagination(data.meta, data.links);
-                    })
-                    .catch(err => console.log(err))
-            },
-
-            fetchDepartment() {
-                let page_url = `/admin/departments/${this.department_id}`
-                axios.get(page_url)
-                    .then(({data}) => {
-                        this.department = data.data
                     })
                     .catch(err => console.log(err))
             },
@@ -194,7 +162,7 @@
 
             resetForm() {
                 this.errors = {}
-                this.formData = {category_id: null, name: '', description: ''}
+                this.formData = {attribute_id: null, name: ''}
                 document.getElementById('name').focus();
             }
         }

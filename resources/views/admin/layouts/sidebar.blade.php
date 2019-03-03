@@ -17,6 +17,11 @@
                     class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Departments</span></a></li>
 
 
+        <!-- Attributes -->
+        <li><a class="app-menu__item" href="{{ route('admin.attributes.index') }}"><i
+                    class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Attributes</span></a></li>
+
+
         {{--<!-- PRODUITS -->
         <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-gift"></i><span class="app-menu__label">Produits</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
