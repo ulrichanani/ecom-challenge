@@ -38,5 +38,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
         // Attributes
         Route::get('/attributes/list', 'AttributesController@list')->name('attributes.list');
         Route::resource('/attributes', 'AttributesController')->except(['create', 'edit']);
+
+        // Attributes values
+        Route::get('/attributes/{attribute}/values/list', 'AttributeValuesController@list')
+            ->name('attributes.values.list');
+        Route::resource('attributes.values', 'AttributeValuesController')->except(['create', 'edit']);
     });
 });

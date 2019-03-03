@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'DepartAttributesments')
+@section('title', 'Attributes')
 @section('desc', 'Manage you products attributes here')
 
 @section('content')

@@ -1,11 +1,8 @@
 <template>
     <tr v-if="show">
-        <td>{{ attribute.name }}</td>
+        <td>{{ attributeValue.value }}</td>
         <td class="actions">
             <div>
-                <a class="btn btn-primary btn-sm mb-1"
-                   v-bind:href="base_url + attribute.attribute_id + '/values'">
-                Edit values</a>
                 <button class="btn btn-primary btn-sm mb-1" @click="editRecord">Edit</button>
                 <button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>
             </div>
@@ -16,22 +13,22 @@
 <script>
     export default {
         props: {
-            attribute: {
+            attributeValue: {
+                attribute_value_id: Number,
                 attribute_id: Number,
-                name: String,
-                description: String
+                value: String,
             }
         },
 
         data() {
             return {
-                base_url: '',
+                base_url: String,
                 show: true
             }
         },
 
         created() {
-            this.base_url = '/admin/attributes/'
+            this.base_url = `/admin/attributes/${this.attributeValue.attribute_id}/values/`
         },
 
         methods: {
@@ -39,16 +36,16 @@
                 if(!confirm('Are you sure?'))
                     return
 
-                axios.delete(this.base_url + this.attribute.attribute_id)
+                axios.delete(this.base_url + this.attributeValue.attribute_value_id)
                     .then(res => {
                         this.show = false
-                        this.flashMessage.success({message: 'Attribute deleted succefully !'})
+                        this.flashMessage.success({message: 'Attibute value deleted succefully !'})
                     })
                     .catch(err => console.log(err))
             },
 
             editRecord() {
-                this.$emit('edit', this.attribute)
+                this.$emit('edit', this.attributeValue)
             }
         }
     }
