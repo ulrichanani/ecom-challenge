@@ -8,9 +8,18 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+@import '~datatables.net-bs4/css/dataTables.bootstrap4.css';
+@import '~datatables.net-buttons-bs4/css/buttons.bootstrap4.css';
+@import '~datatables.net-colreorder-bs4/css/colReorder.bootstrap4.css';
+@import '~datatables.net-responsive-bs4/css/responsive.bootstrap4.css';
+
 @import '../css/font-awesome.min.css';
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.actions {
+    min-width: 100px;
 }

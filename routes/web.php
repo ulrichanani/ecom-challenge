@@ -22,8 +22,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 /**
  * ADMIN ROUTES
  */
-Route::group(['prefix' => 'admin', 'as' => 'admin.'], function () {
+Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], function () {
     Route::namespace('Admin')->group(function () {
         Route::get('/', 'DashboardController@index')->name('dashboard');
+        Route::get('/departments/list', 'DepartmentsController@list')->name('departments.list');
+        Route::resource('/departments', 'DepartmentsController');
     });
 });
