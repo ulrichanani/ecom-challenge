@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Attributes;
+namespace App\Http\Requests\Admin\Categories;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreAttributeValueRequest extends FormRequest
+class StoreCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,8 @@ class StoreAttributeValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => ['required', 'string', 'max:100'],
+            'name' => ['required', 'string', 'max:100', 'unique:category'],
+            'description' => ['nullable', 'string', 'max:1000']
         ];
     }
 }

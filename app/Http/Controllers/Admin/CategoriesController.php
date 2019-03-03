@@ -3,16 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Categories\StoreCategoryRequest;
-use App\Http\Requests\Categories\UpdateCategoryRequest;
-use App\Http\Requests\Departments\UpdateDepartmentRequest;
+use App\Http\Requests\Admin\Categories\StoreCategoryRequest;
+use App\Http\Requests\Admin\Categories\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
 use App\Models\Category;
 use App\Models\Department;
-use Illuminate\Http\Request;
-use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
-use Illuminate\Routing\Redirector;
 
 class CategoriesController extends Controller
 {
@@ -21,26 +17,14 @@ class CategoriesController extends Controller
      * @var ViewFactory
      */
     private $view;
-    /**
-     * @var ResponseFactory
-     */
-    private $response;
-    /**
-     * @var Redirector
-     */
-    private $redirect;
 
     /**
      * Constructor.
-     * @param ViewFactory     $view
-     * @param Redirector      $redirect
-     * @param ResponseFactory $response
+     * @param ViewFactory $view
      */
-    public function __construct(ViewFactory $view, Redirector $redirect, ResponseFactory $response)
+    public function __construct(ViewFactory $view)
     {
         $this->view = $view;
-        $this->response = $response;
-        $this->redirect = $redirect;
     }
 
     /**
@@ -99,9 +83,9 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param Department                $department
-     * @param  \App\Models\Category     $category
+     * @param UpdateCategoryRequest $request
+     * @param Department            $department
+     * @param  \App\Models\Category $category
      * @return CategoryResource
      */
     public function update(UpdateCategoryRequest $request, Department $department, Category $category)

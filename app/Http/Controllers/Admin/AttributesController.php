@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Attributes\StoreAttributeRequest;
-use App\Http\Requests\Attributes\UpdateAttributeRequest;
+use App\Http\Requests\Admin\Attributes\StoreAttributeRequest;
+use App\Http\Requests\Admin\Attributes\UpdateAttributeRequest;
 use App\Http\Resources\AttributeResource;
 use App\Models\Attribute;
-use Illuminate\Http\Request;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 

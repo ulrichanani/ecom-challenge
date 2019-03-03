@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Attributes;
+namespace App\Http\Requests\Admin\Attributes;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UpdateAttributeValueRequest extends FormRequest
+class UpdateAttributeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +25,8 @@ class UpdateAttributeValueRequest extends FormRequest
     public function rules()
     {
         return [
-            'value' => ['required', 'string', 'max:100'],
+            'name' => ['required', 'string', 'max:100', Rule::unique('category', 'name')
+                ->ignore($this->segment(3), 'category_id')],
         ];
     }
 }

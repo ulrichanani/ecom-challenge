@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Departments;
+namespace App\Http\Requests\Admin\Attributes;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
-class UpdateDepartmentRequest extends FormRequest
+class StoreAttributeValueRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,7 @@ class UpdateDepartmentRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required', 'string', 'max:100', Rule::unique('department', 'name')
-                ->ignore($this->segment(3), 'department_id')],
-            'description' => ['nullable', 'string', 'max:1000']
+            'value' => ['required', 'string', 'max:100'],
         ];
     }
 }

@@ -3,14 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Departments\StoreDepartmentRequest;
-use App\Http\Requests\Departments\UpdateDepartmentRequest;
+use App\Http\Requests\Admin\Departments\StoreDepartmentRequest;
+use App\Http\Requests\Admin\Departments\UpdateDepartmentRequest;
 use App\Http\Resources\DepartmentResource;
 use App\Models\Department;
 use Illuminate\Contracts\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Routing\Redirector;
-use Illuminate\Http\Request;
 
 class DepartmentsController extends Controller
 {
@@ -54,7 +53,7 @@ class DepartmentsController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
     public function list()
     {
@@ -92,9 +91,9 @@ class DepartmentsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Http\Response
+     * @param UpdateDepartmentRequest $request
+     * @param  \App\Models\Department $department
+     * @return DepartmentResource
      */
     public function update(UpdateDepartmentRequest $request, Department $department)
     {

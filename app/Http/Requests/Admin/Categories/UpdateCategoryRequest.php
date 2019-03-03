@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Attributes;
+namespace App\Http\Requests\Admin\Categories;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class UpdateAttributeRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,11 @@ class UpdateAttributeRequest extends FormRequest
      */
     public function rules()
     {
+        dump($this->segment(5));
         return [
             'name' => ['required', 'string', 'max:100', Rule::unique('category', 'name')
-                ->ignore($this->segment(3), 'category_id')],
+                ->ignore($this->segment(5), 'category_id')],
+            'description' => ['nullable', 'string', 'max:1000']
         ];
     }
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Attributes\StoreAttributeValueRequest;
-use App\Http\Requests\Attributes\UpdateAttributeValueRequest;
+use App\Http\Requests\Admin\Attributes\StoreAttributeValueRequest;
+use App\Http\Requests\Admin\Attributes\UpdateAttributeValueRequest;
 use App\Http\Resources\AttributeValueResource;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
