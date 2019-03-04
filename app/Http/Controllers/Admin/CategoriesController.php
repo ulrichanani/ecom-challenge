@@ -71,11 +71,10 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Department            $department
      * @param  \App\Models\Category $category
      * @return CategoryResource
      */
-    public function show(Department $department, Category $category)
+    public function show(Category $category)
     {
         return new CategoryResource($category);
     }
@@ -84,11 +83,10 @@ class CategoriesController extends Controller
      * Update the specified resource in storage.
      *
      * @param UpdateCategoryRequest $request
-     * @param Department            $department
      * @param  \App\Models\Category $category
      * @return CategoryResource
      */
-    public function update(UpdateCategoryRequest $request, Department $department, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->update([
             'name' => $request->input('name'),
@@ -101,14 +99,17 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Department            $department
      * @param  \App\Models\Category $category
      * @return CategoryResource
      * @throws \Exception
      */
-    public function destroy(Department $department, Category $category)
+    public function destroy(Category $category)
     {
         $category->delete();
         return new CategoryResource($category);
+    }
+
+    public function all() {
+        return CategoryResource::collection(Category::all());
     }
 }

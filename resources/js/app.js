@@ -14,3 +14,4 @@ require('./app-vue');
  * PLUGINS
  */
 // require('./plugins-setup/datatables');
+require('./plugins-setup/select2');

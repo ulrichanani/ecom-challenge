@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Attributes\StoreAttributeValueRequest;
 use App\Http\Requests\Admin\Attributes\UpdateAttributeValueRequest;
+use App\Http\Resources\AttributesValuesCollection;
 use App\Http\Resources\AttributeValueResource;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
@@ -108,5 +109,10 @@ class AttributeValuesController extends Controller
     {
         $value->delete();
         return new AttributeValueResource($value);
+    }
+
+    public function all()
+    {
+        return new AttributesValuesCollection(Attribute::getAllWithValues());
     }
 }

@@ -30,11 +30,25 @@ class Category extends Model
         return $this->belongsTo(Department::class, 'department_id');
     }
 
+    public function products()
+    {
+        return $this->belongsToMany(Product::class, 'product_category',
+            'category_id', 'product_id');
+    }
+
     /*
      * ACCESSORS
      */
     public function getIdAttribute()
     {
         return $this->category_id;
+    }
+
+    /*
+     * HELPERS
+     */
+    public static function getNamesAndIds()
+    {
+        return Category::pluck('name', 'category_id');
     }
 }
