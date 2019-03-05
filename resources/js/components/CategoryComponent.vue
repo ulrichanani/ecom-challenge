@@ -5,7 +5,7 @@
         <td class="actions">
             <div>
                 <a class="btn btn-primary btn-sm mb-1"
-                   v-bind:href="`/admin/categories/${category.department_id}/products`">
+                   v-bind:href="`/admin/categories/${category.category_id}/products`">
                 Edit products</a>
                 <button class="btn btn-primary btn-sm mb-1" @click="editRecord">Edit</button>
                 <button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>
@@ -41,12 +41,12 @@
                 if(!confirm('Are you sure?'))
                     return
 
-                axios.delete(this.base_url + this.category.category_id)
+                axios.delete('/admin/categories/' + this.category.category_id)
                     .then(res => {
                         this.show = false
                         this.flashMessage.success({message: 'Category deleted succefully !'})
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => handleError(err))
             },
 
             editRecord() {

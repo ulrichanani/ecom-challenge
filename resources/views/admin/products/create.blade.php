@@ -62,6 +62,48 @@
                                     @endif
                                 </div>
 
+                                <!-- Display option -->
+                                <div class="col-md-6 form-group">
+                                    <label for="display" class="control-label">Display option</label>
+                                    {!! Form::select('display', \App\Models\Product::DISPLAY_OPTIONS, null, [
+                                    'class' => "form-control select2" . ($errors->has('display') ? ' is-invalid' : ''),
+                                    ]) !!}
+                                    @if ($errors->has('display'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('display') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <!-- Attributes -->
+                                <div class="col-md-6 form-group">
+                                    <label for="attributes[]" class="control-label">Attributes</label>
+                                    {!! Form::select('attributes[]', \App\Models\Attribute::getAllWithValues(), null, [
+                                    'class' => "form-control select2" . ($errors->has('attributes') ? ' is-invalid' : ''),
+                                    'multiple',
+                                    ]) !!}
+                                    @if ($errors->has('attributes'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('attributes') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
+                                <!-- Categories -->
+                                <div class="col-md-6 form-group">
+                                    <label for="categories[]" class="control-label">Categories</label>
+                                    {!! Form::select('categories[]', \App\Models\Category::getNamesAndIds(), null, [
+                                    'class' => "form-control select2" . ($errors->has('categories') ? ' is-invalid' : ''),
+                                    'multiple',
+                                    'required'
+                                    ]) !!}
+                                    @if ($errors->has('categories'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('categories') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+
                                 <!-- Thumbnail -->
                                 <div class="col-md-6 form-group">
                                     <label for="thumbnail" class="control-label">
@@ -106,57 +148,15 @@
                                     @endif
                                 </div>
 
-                                <!-- Attributes -->
-                                <div class="col-md-6 form-group">
-                                    <label for="attributes[]" class="control-label">Attributes</label>
-                                    {!! Form::select('attributes[]', \App\Models\Attribute::getAllWithValues(), null, [
-                                    'class' => "form-control select2" . ($errors->has('attributes') ? ' is-invalid' : ''),
-                                    'multiple',
-                                    ]) !!}
-                                    @if ($errors->has('attributes'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('attributes') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <!-- Categories -->
-                                <div class="col-md-6 form-group">
-                                    <label for="categories[]" class="control-label">Categories</label>
-                                    {!! Form::select('categories[]', \App\Models\Category::getNamesAndIds(), null, [
-                                    'class' => "form-control select2" . ($errors->has('categories') ? ' is-invalid' : ''),
-                                    'multiple',
-                                    'required'
-                                    ]) !!}
-                                    @if ($errors->has('categories'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('categories') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
                                 <!-- Description -->
                                 <div class="col-md-6 form-group">
                                     <label for="description" class="control-label">Description</label>
-                                    {!! Form::textarea('descrition', null, [
+                                    {!! Form::textarea('description', null, [
                                     'class' => "form-control" . ($errors->has('name') ? ' is-invalid' : '')
                                     ]) !!}
                                     @if ($errors->has('description'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('description') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-
-                                <!-- Display option -->
-                                <div class="col-md-6 form-group">
-                                    <label for="display" class="control-label">Display option</label>
-                                    {!! Form::select('display', \App\Models\Product::DISPLAY_OPTIONS, null, [
-                                    'class' => "form-control select2" . ($errors->has('display') ? ' is-invalid' : ''),
-                                    ]) !!}
-                                    @if ($errors->has('display'))
-                                        <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('display') }}</strong>
                                     </span>
                                     @endif
                                 </div>

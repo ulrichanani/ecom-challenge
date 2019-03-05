@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\DB;
 
 class Attribute extends Model
 {
@@ -40,6 +39,15 @@ class Attribute extends Model
     }
 
     /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result = \DB::raw("call catalog_delete_attribute($this->id)");
+        return is_null(object_get($result[0], '-1'));
+    }
+
+    /*
      * HELPERS
      */
     public static function getAllWithValues()
@@ -49,15 +57,12 @@ class Attribute extends Model
             ->select(
                 'attribute.attribute_id as attribute_id',
                 'attribute_value.attribute_value_id as attribute_value_id',
-                'attribute_value.attribute_value_id as id',
-                'attribute_value.value as value',
-                'attribute.name as name',
                 DB::raw("CONCAT(attribute.name, ' : ', attribute_value.value) as fullname")
             )
             ->whereNotNull('attribute.attribute_id')
-            ->orderBy('name', 'asc')
-            ->orderBy('value', 'asc')
-            ->pluck('fullname', 'id');
+            ->orderBy('name', 'asc')->orderBy('value', 'asc')
+            ->pluck('fullname', 'attribute_value_id');
+
         /*return AttributeValue::leftJoin('attribute',
             'attribute_value.attribute_id', '=', 'attribute.attribute_id')
             ->select(

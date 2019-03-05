@@ -12,6 +12,11 @@
                     class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
 
 
+        <!-- Products -->
+        <li><a class="app-menu__item" href="{{ route('admin.products.index') }}"><i
+                    class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Products</span></a></li>
+
+
         <!-- Departments -->
         <li><a class="app-menu__item" href="{{ route('admin.departments.index') }}"><i
                     class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Departments</span></a></li>

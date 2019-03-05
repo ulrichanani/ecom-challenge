@@ -10,6 +10,7 @@ use App\Http\Resources\AttributeValueResource;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Routing\ResponseFactory;
 
 class AttributeValuesController extends Controller
 {
@@ -18,14 +19,20 @@ class AttributeValuesController extends Controller
      * @var ViewFactory
      */
     private $view;
+    /**
+     * @var ResponseFactory
+     */
+    private $response;
 
     /**
      * Constructor.
-     * @param ViewFactory $view
+     * @param ViewFactory     $view
+     * @param ResponseFactory $response
      */
-    public function __construct(ViewFactory $view)
+    public function __construct(ViewFactory $view, ResponseFactory $response)
     {
         $this->view = $view;
+        $this->response = $response;
     }
 
     /**
@@ -107,8 +114,12 @@ class AttributeValuesController extends Controller
      */
     public function destroy(Attribute $attribute, AttributeValue $value)
     {
-        $value->delete();
-        return new AttributeValueResource($value);
+        if ($value->delete())
+            return new AttributeValueResource($value);
+        else
+            return $this->response->json([
+                'message' => "You can't delete this resource!"
+            ], 400);
     }
 
     public function all()

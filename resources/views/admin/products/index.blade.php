@@ -1,11 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Categories')
-@section('desc', 'Manage you products categories here')
+@section('title', 'All products')
+@section('desc', 'This all all the products of your store')
 
 @section('content')
 
-    <products-page-component
-    :category_id="{{ $category_id }}"></products-page-component>
+    <products-page-component></products-page-component>
 
 @endsection

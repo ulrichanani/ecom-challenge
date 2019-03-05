@@ -4,51 +4,65 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Products\StoreProductRequest;
+use App\Http\Requests\Admin\Products\UpdateProductRequest;
 use App\Http\Resources\ProductCollection;
 use App\Http\Resources\ProductResource;
 use App\Models\Category;
 use App\Models\Product;
+use App\Traits\UploadableTrait;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Routing\Redirector;
+use Illuminate\Routing\ResponseFactory;
 
 class ProductsController extends Controller
 {
+    use UploadableTrait;
 
     /**
      * @var ViewFactory
      */
     private $view;
+    /**
+     * @var Redirector
+     */
+    private $redirector;
+    /**
+     * @var ResponseFactory
+     */
+    private $response;
 
     /**
      * Constructor.
-     * @param ViewFactory $view
+     * @param ViewFactory     $view
+     * @param Redirector      $redirector
+     * @param ResponseFactory $response
      */
-    public function __construct(ViewFactory $view)
+    public function __construct(ViewFactory $view, Redirector $redirector, ResponseFactory $response)
     {
         $this->view = $view;
+        $this->redirector = $redirector;
+        $this->response = $response;
     }
 
     /**
      * Display the resource main page.
      *
-     * @param Category $category
      * @return \Illuminate\Contracts\View\View
      */
-    public function index(Category $category)
+    public function index()
     {
-        return $this->view->make('admin.products.index', ['category_id' => $category->id]);
+        return $this->view->make('admin.products.index');
     }
 
     /**
      * Display a listing of the resource.
      *
-     * @param Category $category
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return ProductCollection
      */
-    public function list(Category $category)
+    public function list()
     {
-        $products = $category->products()
-            ->orderBy('name', 'asc')
-            ->paginate(25);
+        $products = Product::orderBy('name', 'asc')->paginate(25);
         return new ProductCollection($products);
     }
 
@@ -69,16 +83,29 @@ class ProductsController extends Controller
      * @param Category            $category
      * @return ProductResource
      */
-    public function store(StoreProductRequest $request, Category $category)
+    public function store(StoreProductRequest $request)
     {
-        dd($request->all());
+        $thumbnail = $this->storeFile($request->file('thumbnail'));
+        $image1 = $this->storeFile($request->file('image'));
+        $image2 = $request->file('image_2');
+        $image2 = $image2 instanceof UploadedFile ? $this->storeFile($image2) : null;
+
         $product = Product::create([
-            'category_id' => $category->id,
             'name' => $request->input('name'),
-            'description' => $request->input('description'),
+            'description' => $request->input('description') ?? '',
+            'price' => $request->input('price'),
+            'discounted_price' => $request->input('discounted_price'),
+            'image' => $image1,
+            'image_2' => $image2,
+            'thumbnail' => $thumbnail,
+            'display' => $request->input('display'),
         ]);
 
-        return new ProductResource($product);
+        $product->categories()->sync($request->input('categories'));
+        $product->attributeValues()->sync($request->input('attributes'));
+
+        return $this->redirector->route('admin.products.edit')
+            ->with('success', 'Product added successfully');
     }
 
     /**
@@ -88,7 +115,7 @@ class ProductsController extends Controller
      * @param  \App\Models\Product $product
      * @return ProductResource
      */
-    public function show(Category $category, Product $product)
+    public function show(Product $product)
     {
 //        dd($product->categories, $product->attributes);
 //        dd($product->with(['attributes', 'categories'])->get());
@@ -103,7 +130,7 @@ class ProductsController extends Controller
      */
     public function edit(Product $product)
     {
-        return $this->view->make('admin.products.edit',  ['product_id' => $product->id]);
+        return $this->view->make('admin.products.edit', compact('product'));
     }
 
     /**
@@ -114,14 +141,33 @@ class ProductsController extends Controller
      * @param  \App\Models\Product $product
      * @return ProductResource
      */
-    public function update(UpdateProductRequest $request, Category $category, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update([
+        $data = [];
+        if ($request->file('image') instanceof UploadedFile) {
+            $data['image'] = $this->storeFile($request->file('image'));
+        }
+        if ($request->file('image_2') instanceof UploadedFile) {
+            $data['image_2'] = $this->storeFile($request->file('image_2'));
+        }
+        if ($request->file('thumbnail') instanceof UploadedFile) {
+            $data['thumbnail'] = $this->storeFile($request->file('thumbnail'));
+        }
+
+        $data = array_merge($data, [
             'name' => $request->input('name'),
-            'description' => $request->input('description'),
+            'description' => $request->input('description') ?? '',
+            'price' => $request->input('price'),
+            'discounted_price' => $request->input('discounted_price'),
+            'display' => $request->input('display'),
         ]);
 
-        return new ProductResource($product);
+        $product->update($data);
+
+        $product->categories()->sync($request->input('categories'));
+        $product->attributeValues()->sync($request->input('attributes'));
+
+        return $this->redirector->back()->with('success', 'Product updated successfully');
     }
 
     /**
@@ -132,9 +178,13 @@ class ProductsController extends Controller
      * @return ProductResource
      * @throws \Exception
      */
-    public function destroy(Category $category, Product $product)
+    public function destroy(Product $product)
     {
-        $product->delete();
-        return new ProductResource($product);
+        if ($product->delete())
+            return new ProductResource($product);
+        else
+            return $this->response->json([
+                'message' => "You can't delete this resource!"
+            ], 400);
     }
 }

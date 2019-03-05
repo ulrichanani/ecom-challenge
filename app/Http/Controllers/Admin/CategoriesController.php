@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Categories\StoreCategoryRequest;
 use App\Http\Requests\Admin\Categories\UpdateCategoryRequest;
 use App\Http\Resources\CategoryResource;
+use App\Http\Resources\ProductCollection;
 use App\Models\Category;
 use App\Models\Department;
 use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Routing\ResponseFactory;
 
 class CategoriesController extends Controller
 {
@@ -17,14 +19,20 @@ class CategoriesController extends Controller
      * @var ViewFactory
      */
     private $view;
+    /**
+     * @var ResponseFactory
+     */
+    private $response;
 
     /**
      * Constructor.
-     * @param ViewFactory $view
+     * @param ViewFactory     $view
+     * @param ResponseFactory $response
      */
-    public function __construct(ViewFactory $view)
+    public function __construct(ViewFactory $view, ResponseFactory $response)
     {
         $this->view = $view;
+        $this->response = $response;
     }
 
     /**
@@ -105,11 +113,29 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->delete();
-        return new CategoryResource($category);
+        if ($category->delete())
+            return new CategoryResource($category);
+        else
+            return $this->response->json([
+                'message' => "You can't delete this resource!"
+            ], 400);
     }
 
-    public function all() {
+    public function all()
+    {
         return CategoryResource::collection(Category::all());
+    }
+
+    public function products(Category $category)
+    {
+        return $this->view->make('admin.categories.products', ['category_id' => $category->category_id]);
+    }
+
+    public function productsList(Category $category)
+    {
+        $products = $category->products()
+            ->orderBy('name', 'asc')
+            ->paginate(25);
+        return new ProductCollection($products);
     }
 }

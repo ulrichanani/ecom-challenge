@@ -27,12 +27,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
         Route::get('/', 'DashboardController@index')->name('dashboard');
 
         // Departments
+        Route::get('/departments/{department}/categories/list', 'CategoriesController@list')
+            ->name('departments.categories.list');
         Route::get('/departments/list', 'DepartmentsController@list')->name('departments.list');
         Route::resource('/departments', 'DepartmentsController')->except(['create', 'edit']);
 
         // Categories
-        Route::get('/departments/{department}/categories/list', 'CategoriesController@list')
-            ->name('departments.categories.list');
+        Route::get('/categories/{category}/products/list', 'CategoriesController@productsList')
+            ->name('categories.products.list');
+        Route::get('categories/{category}/products', 'CategoriesController@products')
+            ->name('categories.products');
         Route::get('/categories/all', 'CategoriesController@all');
         Route::get('/categories/{category}', 'CategoriesController@show');
         Route::put('/categories/{category}', 'CategoriesController@update');
@@ -50,9 +54,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
         Route::resource('attributes.values', 'AttributeValuesController')->except(['create', 'edit']);
 
         // Products
-        Route::get('/categories/{category}/products/list', 'ProductsController@list')
-            ->name('categories.products.list');
-        Route::get('categories/{category}/products', 'ProductsController@index');
-        Route::resource('products', 'ProductsController')->except('index');
+        Route::get('products/list', 'ProductsController@list')->name('products.list');
+        Route::resource('products', 'ProductsController');
     });
 });

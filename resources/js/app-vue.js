@@ -34,3 +34,15 @@ Vue.component('department-component', require('./components/DepartmentsComponent
 const app = new Vue({
     el: '#app'
 });
+
+
+window.handleError = (err) => {
+    console.log(err.response);
+    if(err.response && err.response.data) {
+        if(err.response.data.message) {
+            app.flashMessage.error({message: err.response.data.message})
+        } else {
+            app.flashMessage.error({message: 'An error occured!'})
+        }
+    }
+}

@@ -9,7 +9,11 @@ class Customer extends Authenticatable
 {
     use Notifiable;
 
+    /*
+     * ELOQUENT CONFIG
+     */
     public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -18,6 +22,7 @@ class Customer extends Authenticatable
     protected $fillable = [
         'customer_id', 'name', 'email', 'password',
     ];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -39,5 +44,14 @@ class Customer extends Authenticatable
         if (!$isRememberTokenAttribute) {
             parent::setAttribute($key, $value);
         }
+    }
+
+    /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result = \DB::raw("call catalog_delete_customer($this->id)");
+        return is_null(object_get($result[0], '-1'));
     }
 }

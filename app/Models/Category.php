@@ -45,6 +45,15 @@ class Category extends Model
     }
 
     /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result  = \DB::select("call catalog_delete_category($this->id)");
+        return is_null(object_get($result[0], '-1'));
+    }
+
+    /*
      * HELPERS
      */
     public static function getNamesAndIds()

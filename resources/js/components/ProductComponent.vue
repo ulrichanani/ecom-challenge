@@ -4,6 +4,7 @@
         <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>
         <td>{{ product.discounted_price }}</td>
+        <td>{{ product.display === 0 ? 'Hide' : 'Show' }}</td>
         <td class="actions">
             <div>
                 <a class="btn btn-primary btn-sm mb-1"
@@ -24,7 +25,8 @@
                 name: String,
                 description: String,
                 price: Number,
-                discounted_price: Number
+                discounted_price: Number,
+                display: Number
             }
         },
 

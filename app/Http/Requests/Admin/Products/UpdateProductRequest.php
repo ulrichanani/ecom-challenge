@@ -24,14 +24,18 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['nullable', 'string', 'max:100'],
+            'name' => ['string', 'max:100'],
             'description' => ['nullable', 'string', 'max:1000'],
-            'price' => ['nullable', 'numeric', 'min:0'],
+            'price' => ['numeric', 'min:0'],
             'discounted_price' => ['nullable', 'numeric', 'min:0'],
             'image' => ['nullable', 'file'],
             'image_2' => ['nullable', 'file'],
             'thumbnail' => ['nullable', 'file'],
-            'display' => ['nullable', 'integer']
+            'display' => ['integer'],
+            'categories' => ['required', 'array'],
+            'categories.*' => ['integer'],
+            'attributes' => ['nullable', 'array'],
+            'attributes.*' => ['integer'],
         ];
     }
 }

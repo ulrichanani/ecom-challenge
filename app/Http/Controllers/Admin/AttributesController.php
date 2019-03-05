@@ -105,10 +105,11 @@ class AttributesController extends Controller
      */
     public function destroy(Attribute $attribute)
     {
-        DB::table('product_attibute')->where('attribute_id', '=', $attribute->id)->delete();
-        $attribute->values()->delete();
-        $attribute->delete();
-
-        return new AttributeResource($attribute);
+        if ($attribute->delete())
+            return new AttributeResource($attribute);
+        else
+            return $this->response->json([
+                'message' => "You can't delete this resource!"
+            ], 400);
     }
 }

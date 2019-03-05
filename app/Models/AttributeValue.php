@@ -37,4 +37,13 @@ class AttributeValue extends Model
     {
         return $this->attribute_value_id;
     }
+
+    /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result = \DB::raw("call catalog_delete_attribute_value($this->id)");
+        return is_null(object_get($result[0], '-1'));
+    }
 }

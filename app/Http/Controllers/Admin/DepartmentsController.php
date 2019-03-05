@@ -114,8 +114,11 @@ class DepartmentsController extends Controller
      */
     public function destroy(Department $department)
     {
-        $department->delete();
-
-        return new DepartmentResource($department);
+        if ($department->delete())
+            return new DepartmentResource($department);
+        else
+            return $this->response->json([
+                'message' => "You can't delete this resource!"
+            ], 400);
     }
 }

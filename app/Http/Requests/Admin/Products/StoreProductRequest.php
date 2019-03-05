@@ -31,12 +31,11 @@ class StoreProductRequest extends FormRequest
             'image' => ['required', 'file'],
             'image_2' => ['nullable', 'file'],
             'thumbnail' => ['required', 'file'],
-            'display' => ['nullable', 'integer'],
+            'display' => ['integer'],
             'categories' => ['required', 'array'],
             'categories.*' => ['integer'],
             'attributes' => ['nullable', 'array'],
             'attributes.*' => ['integer'],
-            'display' => ['nullable', 'integer']
         ];
     }
 }

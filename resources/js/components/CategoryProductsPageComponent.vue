@@ -7,6 +7,14 @@
 
                     <div class="row">
                         <div class="col">
+                            <h3 class="mb-3">
+                                List of products for category : {{ category.name || '' }}
+                            </h3>
+                            <div class="mb-3">
+                                <a class="btn btn-link"
+                                   :href="`/admin/departments/${category.department_id}/categories/`">
+                                    <i class="fa fa-arrow-left"></i> Go back to categories</a>
+                            </div>
                             <h6 v-if="products.length === 0">There's no product yet in this category</h6>
                             <table class="table dataTable" v-if="products.length > 0">
                                 <thead>
@@ -51,16 +59,30 @@
 
 <script>
     export default {
+        props: {
+            category_id: Number
+        },
+
         data() {
             return {
                 products: [],
+                category: {
+                    category_id: null,
+                    department_id: null,
+                    name: '',
+                    description: ''
+                },
                 pagination: {},
                 base_url: String,
             }
         },
 
         created() {
-            this.base_url = `/admin/products/`
+            if(this.category_id < 1)
+                return
+
+            this.base_url = `/admin/categories/${this.category_id}/products/`
+            this.fetchCategory()
             this.fetchRecords();
         },
 
@@ -71,6 +93,15 @@
                     .then(({data}) => {
                         this.products = data.data
                         this.makePagination(data.meta, data.links);
+                    })
+                    .catch(err => console.log(err))
+            },
+
+            fetchCategory() {
+                let page_url = `/admin/categories/${this.category_id}`
+                axios.get(page_url)
+                    .then(({data}) => {
+                        this.category = data.data
                     })
                     .catch(err => console.log(err))
             },

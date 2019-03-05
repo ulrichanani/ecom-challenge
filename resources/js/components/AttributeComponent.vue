@@ -44,7 +44,7 @@
                         this.show = false
                         this.flashMessage.success({message: 'Attribute deleted succefully !'})
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => handleError(err))
             },
 
             editRecord() {

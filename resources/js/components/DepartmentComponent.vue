@@ -43,7 +43,7 @@
                         this.show = false
                         this.flashMessage.success({message: 'Department deleted succefully !'})
                     })
-                    .catch(err => console.log(err))
+                    .catch(err => handleError(err))
             },
 
             editRecord() {

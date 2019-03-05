@@ -37,4 +37,13 @@ class Department extends Model
     {
         return $this->department_id;
     }
+
+    /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result  = \DB::select("call catalog_delete_department($this->id)");
+        return is_null(object_get($result[0], '-1'));
+    }
 }

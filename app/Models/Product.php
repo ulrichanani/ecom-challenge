@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Product extends Model
 {
@@ -40,7 +41,7 @@ class Product extends Model
             'product_id', 'category_id');
     }
 
-    public function attributes()
+    public function attributeValues()
     {
         return $this->belongsToMany(AttributeValue::class, 'product_attribute',
             'product_id', 'attribute_value_id');
@@ -55,15 +56,33 @@ class Product extends Model
     }
 
     /*
+     * ELOQUENT METHODS OVERRIDE
+     */
+    public function delete()
+    {
+        $result = \DB::raw("call catalog_delete_product($this->id)");
+        return is_null(object_get($result[0], '-1'));
+    }
+
+    /*
      * HELPERS
      */
     public function getAttributesValuesIds()
     {
-        return $this->attributes()->pluck('attribute_value_id');
+        return $this->attributeValues()->pluck('product_attribute.attribute_value_id');
     }
 
     public function getCategoriesIds()
     {
         return $this->categories()->pluck('attribute_value_id');
+    }
+
+    public function getAttributesNamesAndValues() {
+        $attr = collect(DB::select('call catalog_get_product_attributes(1)'));
+        $attr = $attr->transform(function ($item, $key) {
+            $item->fullname = $item->attribute_name . ' : ' . $item->attribute_value;
+            return $item;
+        })->pluck('fullname', 'attribute_value_id');
+        return $attr;
     }
 }
