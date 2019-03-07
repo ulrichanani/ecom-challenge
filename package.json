@@ -24,6 +24,9 @@
     "vue-template-compiler": "^2.6.6"
   },
   "dependencies": {
+    "gsap": "^2.1.2",
+    "select2": "^4.0.6-rc.1",
+    "toastr": "^2.1.4",
     "vue-flash-message": "^0.7.2"
   }
 }

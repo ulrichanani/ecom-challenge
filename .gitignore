@@ -12,10 +12,12 @@ yarn-error.log
 
 /.idea
 
-/public/administration
-/public/js
-/public/css
-/public/fonts
-/public/images
-/public/storage
+/public
 
+!/public/svg
+!/public/.htaccess
+!/public/favicon.ico
+!/public/index.php
+!/public/mix.manifest.json
+!/public/robots.txt
+!/public/web.config

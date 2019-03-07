@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('administration/css/admin.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('admin-assets/css/admin.css') }}">
 </head>
 <body class="app sidebar-mini rtl">
 <!-- Navbar-->

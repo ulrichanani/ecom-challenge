@@ -1,6 +1,9 @@
 {
-    "/administration/js/admin.js": "/administration/js/admin.js",
+    "/admin-assets/js/admin.js": "/admin-assets/js/admin.js",
     "/js/app.js": "/js/app.js",
     "/css/app.css": "/css/app.css",
-    "/administration/css/admin.css": "/administration/css/admin.css"
+    "/admin-assets/css/admin.css": "/admin-assets/css/admin.css",
+    "/css/front.css": "/css/front.css",
+    "/js/front.js": "/js/front.js",
+    "/js/front-vendor.js": "/js/front-vendor.js"
 }
