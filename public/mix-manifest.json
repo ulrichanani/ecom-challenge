@@ -5,5 +5,6 @@
     "/admin-assets/css/admin.css": "/admin-assets/css/admin.css",
     "/css/front.css": "/css/front.css",
     "/js/front.js": "/js/front.js",
+    "/js/app-vendor.js": "/js/app-vendor.js",
     "/js/front-vendor.js": "/js/front-vendor.js"
 }

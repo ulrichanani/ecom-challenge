@@ -14,7 +14,7 @@ try {
     require('bootstrap');
 
     // SELECT2
-    require('select2');
+    require('select2')( window, $ );
 
     // DATATABLES
     // var dt_bs4 = require( 'datatables.net-bs4' )( window, $ );

@@ -19,4 +19,9 @@ class ShippingCart extends Model
     {
         $this->belongsToMany(Product::class);
     }
+
+    public function subTotal($nb)
+    {
+        return $this->realPrice * abs($nb);
+    }
 }

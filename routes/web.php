@@ -11,13 +11,30 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => 'shopping_cart'], function () {
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/search', 'HomeController@search')->name('search');
+    Route::get('/user', 'UserController@index')->name('user');
+    Route::get('/user/saved-items', 'UserController@savedItems')->name('user.saved-items');
+
+    // Cart
+    Route::get('/cart', 'CartController@index')->name('cart');
+    Route::put('/cart', 'CartController@update')->name('cart.update');
+    Route::post('/cart/add-item/{product}', 'CartController@addItem')->name('cart.add-item');
+    Route::post('/cart/save-for-later/{item}', 'CartController@saveForLater')->name('cart.save-for-later');
+    Route::post('/cart/move-to-cart/{item}', 'CartController@moveToCart')->name('cart.move-to-cart');
+    Route::delete('/cart/remove-item/{item}', 'CartController@removeItem')->name('cart.remove-item');
+
+    Route::group(['middleware' => 'products_page'], function () {
+        Route::resource('departments', 'DepartmentsController')->only(['index', 'show']);
+        Route::resource('categories', 'CategoriesController')->only(['index', 'show']);
+    });
+
+    Route::post('products/{product}/reviews', 'ProductsController@addReview')->name('products.addReview');
+    Route::resource('products', 'ProductsController')->only(['index', 'show']);
+});
 
 /**
  * ADMIN ROUTES

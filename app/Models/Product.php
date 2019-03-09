@@ -11,8 +11,8 @@ class Product extends Model
      * CONSTANTS
      */
     const DISPLAY_OPTIONS = [
-        '0' => 'Hide',
-        '1' => 'Show'
+        '0' => 'Default',
+        '1' => 'Featured'
     ];
 
     /*
@@ -33,12 +33,30 @@ class Product extends Model
     }
 
     /*
+     * SCOPES
+     */
+    public function scopeFeatured($query)
+    {
+        return $query->where('display', '>', 0);
+    }
+
+    /*
      * RELATIONS
      */
     public function categories()
     {
         return $this->belongsToMany(Category::class, 'product_category',
             'product_id', 'category_id');
+    }
+
+    /*public function attributes()
+    {
+        return $this->belongsToMany(Attribute::class, 'product_attribute',
+            'product_id', 'attribute_id');
+    }*/
+
+    public function reviews() {
+        return $this->hasMany(Review::class, 'product_id');
     }
 
     public function attributeValues()
@@ -84,5 +102,22 @@ class Product extends Model
             return $item;
         })->pluck('fullname', 'attribute_value_id');
         return $attr;
+    }
+
+    public function attributesAndValues() {
+        return $this->attributeValues()->with('attribute')->get()
+            ->mapToGroups(function ($item, $key) {
+                return [$item->attribute->name => $item];
+            });
+    }
+
+    public function imagePath($name)
+    {
+        return ("/storage/product_images/" . $this->$name) ?? '';
+    }
+
+    public function getRealPriceAttribute()
+    {
+        return $this->discounted_price > 0 ? $this->discounted_price : $this->price;
     }
 }

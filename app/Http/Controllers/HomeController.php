@@ -13,7 +13,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,5 +24,15 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * Show the application products search page.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function search()
+    {
+        return view('search');
     }
 }

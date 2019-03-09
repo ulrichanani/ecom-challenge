@@ -30,6 +30,14 @@ class Department extends Model
         return $this->hasMany(Category::class, 'department_id');
     }
 
+    public function products()
+    {
+        return Product::join('product_category', 'product_category.product_id', 'product.product_id')
+            ->whereIn('product_category.category_id', $this->categories->pluck('category_id'));
+        return $this->categories()->with('products');
+        return $this->hasManyThrough(Product::class, Category::class, 'department_id', 'category_id');
+    }
+
     /*
      * ACCESSORS
      */
