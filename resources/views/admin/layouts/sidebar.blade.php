@@ -25,5 +25,10 @@
         <!-- Attributes -->
         <li><a class="app-menu__item" href="{{ route('admin.attributes.index') }}"><i
                     class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Attributes</span></a></li>
+
+
+        <!-- Orders -->
+        <li><a class="app-menu__item" href="{{ route('admin.orders.index') }}"><i
+                    class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Orders</span></a></li>
     </ul>
 </aside>

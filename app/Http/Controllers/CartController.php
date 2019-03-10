@@ -10,6 +10,7 @@ use App\Models\Product;
 use App\Models\Shipping;
 use App\Models\ShippingRegion;
 use App\Models\ShoppingCart;
+use App\Notifications\OrderCreatedNotification;
 use Illuminate\Contracts\View\Factory as ViewFactory;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
@@ -133,6 +134,8 @@ class CartController extends Controller
             return $this->redirect->back()->with('warning', 'Your shopping cart is empty');
 
         $data = $request->validated();
+        $request->user()->update($data);
+
         $shipping = Shipping::findOrFail($request->input('shipping_id'));
         $data['total_amount'] = $cartItems->sum('subTotal') + (int)$shipping->shipping_cost;
         $data['status'] = Order::STATUSES['not_shipped'];
@@ -155,6 +158,10 @@ class CartController extends Controller
             ]);
         }
 
+        // Sending notification mail
+        $request->user()->notify(new OrderCreatedNotification($order));
+
+        // Delete buyed cart items
         ShoppingCart::current()->buyNow()->delete();
 
         return $this->redirect->route('cart')->with('success', 'Your order was successfully registered');

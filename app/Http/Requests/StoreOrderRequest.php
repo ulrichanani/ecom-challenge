@@ -30,7 +30,7 @@ class StoreOrderRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'address_1' => ['required', 'string'],
+            'address_2' => ['required', 'string'],
             'city' => ['required', 'string'],
             'postal_code' => ['required', 'string'],
             'country' => ['required', 'string'],

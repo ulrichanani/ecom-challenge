@@ -13,7 +13,10 @@ const mix = require('laravel-mix');
 
 mix
     // Global Assets
-    .scripts('node_modules/toastr/toastr.js', 'public/js/app-vendor.js')
+    .scripts([
+        'node_modules/toastr/toastr.js',
+        '/node_modules/select2/dist/js/select2.js',
+    ], 'public/js/app-vendor.js')
 
     // Admin pannel assets
     .js('resources/admin-assets/js/app.js', 'public/admin-assets/js/admin.js')

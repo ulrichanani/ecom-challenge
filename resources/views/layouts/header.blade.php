@@ -13,17 +13,17 @@
                     <div class="top_header_middle">
                         <strong>
                         @guest
-                            <a href="/login">
+                            <a href="{{ route('login') }}">
                                 <i class="fa fa-sign-in"></i> Login
                             </a>
-                            <a href="/register">
+                            <a href="{{ route('register') }}">
                                 <i class="fa fa-sign-out"></i> Register
                             </a>
                         @else
                             <a href="{{ route('admin.dashboard') }}">
                                 <i class="fa fa-home"></i> Shop Admin
                             </a>
-                            <a href="/logout" onclick="event.preventDefault();
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                         document.getElementById('form-logout').submit()">
                                 <i class="fa fa-sign-out"></i> Logout
                             </a>
@@ -40,7 +40,7 @@
     <div class="carousel_menu_inner">
         <div class="container">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/"><img src="{{ asset('storage/images/tshirtshop.png') }}" alt=""></a>
+                <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('storage/images/tshirtshop.png') }}" alt=""></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse"
                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
@@ -89,11 +89,11 @@
                     <ul class="navbar-nav justify-content-end">
                         {{--<li class="search_icon"><a href="/search"><i class="icon-magnifier icons"></i></a></li>--}}
                         @auth
-                            <li class="user_icon"><a href="/user" data-toggle="tooltip"
+                            <li class="user_icon"><a href="{{ route('user') }}" data-toggle="tooltip"
                                                      title="@auth My space @else Login/Register @endif">
                                     <i class="icon-user icons"></i></a></li>
                         @endauth
-                        <li class="cart_cart"><a href="/cart" id="cartCount" data-cart-count="{{ $CART->count() }}">
+                        <li class="cart_cart"><a href="{{ route('cart') }}" id="cartCount" data-cart-count="{{ $CART->count() }}">
                                 <i class="icon-handbag icons"></i>
                                 {{ $CART->count() }}
                             </a>

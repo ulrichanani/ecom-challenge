@@ -180,15 +180,15 @@
                             </div>
 
                             <div class="col-md-6 form-group">
-                                <label for="address_1" class="control-label">Address
+                                <label for="address_2" class="control-label">Address
                                     <span class="text-danger">*</span></label>
-                                {!! Form::text('address_1', null, [
-                                'class' => 'form-control' . ($errors->has('address_1') ? ' is-invalid' : ''),
+                                {!! Form::text('address_2', null, [
+                                'class' => 'form-control' . ($errors->has('address_2') ? ' is-invalid' : ''),
                                 'required'
                                 ]) !!}
-                                @if ($errors->has('address_1'))
+                                @if ($errors->has('address_2'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address_1') }}</strong>
+                                        <strong>{{ $errors->first('address_2') }}</strong>
                                     </span>
                                 @endif
                             </div>

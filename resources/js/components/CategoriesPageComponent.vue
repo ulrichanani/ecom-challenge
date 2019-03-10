@@ -63,7 +63,7 @@
                             </table>
 
                             <!-- NAV -->
-                            <nav aria-label="Page navigation example" v-if="categories.length > 0">
+                            <nav aria-label="Page navigation" v-if="categories.length > 0">
                                 <ul class="pagination">
                                     <li v-bind:class="{disabled: !pagination.prev_page_url}"
                                         @click="pagination.prev_page_url ? fetchRecords(pagination.prev_page_url) : ''"

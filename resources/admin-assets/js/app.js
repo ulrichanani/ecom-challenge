@@ -2,6 +2,7 @@
 
 require('../../js/bootstrap');
 require('../../js/app-vue');
+require('../../js/plugins-setup/select2')
 require('../../js/utilities/global-functions')
 
 require('./main');

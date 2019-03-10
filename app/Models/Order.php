@@ -3,15 +3,24 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cookie;
 
 class Order extends Model
 {
+    use FormAccessible;
+
     const STATUSES = [
         'not_shipped' => 1,
         'shipped' => 2,
-        'cancelled' => 2,
+        'cancelled' => 3,
+    ];
+
+    const STATUSES_LABELS = [
+        1 => 'Not Shipped',
+        2 => 'Shipped',
+        3 => 'Cancelled',
     ];
 
     /*
@@ -25,6 +34,11 @@ class Order extends Model
     ];
 
     protected $table = 'orders';
+
+    protected $casts = [
+        'created_on' => 'datetime',
+        'shipped_on' => 'datetime'
+    ];
 
     public function getKeyName()
     {
@@ -45,7 +59,22 @@ class Order extends Model
      */
     public function items()
     {
-        return $this->hasMany(OrderDetail::class);
+        return $this->hasMany(OrderDetail::class, 'order_id', 'order_id');
+    }
+
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'customer_id');
+    }
+
+    public function shipping()
+    {
+        return $this->belongsTo(Shipping::class, 'shipping_id', 'shipping_id');
+    }
+
+    public function shippingRegion()
+    {
+        return $this->shipping()->with('shippingRegion');
     }
 
     /*
@@ -54,5 +83,15 @@ class Order extends Model
     public function getIdAttribute()
     {
         return $this->order_id;
+    }
+
+    public function getStatusLabelAttribute()
+    {
+        return self::STATUSES_LABELS[$this->status] ?? '';
+    }
+
+    public function formShippedOnAttribute($value)
+    {
+        return $value ? Carbon::parse($value)->format('Y-m-d') : '';
     }
 }

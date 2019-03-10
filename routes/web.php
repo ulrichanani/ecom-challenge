@@ -60,10 +60,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
             ->name('categories.products.list');
         Route::get('categories/{category}/products', 'CategoriesController@products')
             ->name('categories.products');
-        Route::get('/categories/all', 'CategoriesController@all');
-        Route::get('/categories/{category}', 'CategoriesController@show');
-        Route::put('/categories/{category}', 'CategoriesController@update');
-        Route::delete('/categories/{category}', 'CategoriesController@destroy');
+        Route::get('/categories/all', 'CategoriesController@all')->name('categories.all');
+        Route::get('/categories/{category}', 'CategoriesController@show')->name('categories.show');
+        Route::put('/categories/{category}', 'CategoriesController@update')->name('categories.update');
+        Route::delete('/categories/{category}', 'CategoriesController@destroy')->name('categories.delete');
         Route::resource('departments.categories', 'CategoriesController')->only(['index', 'store']);
 
         // Attributes
@@ -79,5 +79,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth', 'as' => 'admin.'], fu
         // Products
         Route::get('products/list', 'ProductsController@list')->name('products.list');
         Route::resource('products', 'ProductsController');
+
+        // Orders
+        Route::get('/orders/list', 'OrdersController@list')->name('orders.list');
+        Route::resource('orders', 'OrdersController')->only(['index', 'show', 'update']);
     });
 });

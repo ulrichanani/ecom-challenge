@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'All products')
+@section('title', 'Orders')
 @section('desc', 'This is all the products of your store')
 
 @section('content')
 
-    <products-page-component></products-page-component>
+    <orders-page-component></orders-page-component>
 
 @endsection

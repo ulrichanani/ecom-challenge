@@ -1,11 +1,15 @@
-<div class="col-lg-3 float-md-right">
-    <div class="categories_sidebar">
+    <div class="categories_sidebar col-lg-3">
         <aside class="l_widgest l_p_categories_widget">
             <div class="l_w_title">
                 <h3>Search</h3>
             </div>
-            {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
-            <div class="form-inline">
+            {!! Form::open([
+            'url' => route('search'),
+            'method' => 'get',
+            'class' => 'form-inline'
+            ]) !!}
+            <div class="row">
+
                 <div class="form-group">
                     {!! Form::text('query', ($query ?? ''), [
                     'class' => 'form-control',
@@ -13,9 +17,9 @@
                     'required',
                      'minlength' => 2,
                     ]) !!}
-                    <input type="submit" value="Ok" class="btn btn-primary ml-1">
                 </div>
-                <div class="form-group form-check">
+                <input type="submit" value="Ok" class="btn btn-primary ml-1">
+                <div class="offset-1 col-10 form-group form-check">
                     <input type="checkbox" class="form-check-input"
                            {{ ($searchInBlock ?? '') ? 'checked' : '' }}
                            name="search_block" id="search_block">

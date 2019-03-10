@@ -13,7 +13,7 @@
                     <div class="col">
                         <div class="mb-3">
                             <a class="btn btn-link"
-                               href="/admin/products">
+                               href="{{ route('admin.products.index') }}">
                                 <i class="fa fa-arrow-left"></i> Go back to products</a>
                         </div>
 

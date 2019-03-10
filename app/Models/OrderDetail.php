@@ -43,6 +43,6 @@ class OrderDetail extends Model
 
     public function getSubTotalAttribute()
     {
-        return $this->product->realPrice * $this->quantity;
+        return $this->unit_cost * $this->quantity;
     }
 }

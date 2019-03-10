@@ -100,7 +100,7 @@
                                     </h4>
                                 </div>
                             @endif
-                            <nav aria-label="Page navigation example" class="pagination_area">
+                            <nav aria-label="Page navigation" class="pagination_area">
                                 <ul class="pagination">
                                     {{ $products ? $products->appends(['query' => $query])->links() : '' }}
                                 </ul>

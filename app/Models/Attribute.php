@@ -57,23 +57,10 @@ class Attribute extends Model
             ->select(
                 'attribute.attribute_id as attribute_id',
                 'attribute_value.attribute_value_id as attribute_value_id',
-                DB::raw("CONCAT(attribute.name, ' : ', attribute_value.value) as fullname")
+                \DB::raw("CONCAT(attribute.name, ' : ', attribute_value.value) as fullname")
             )
             ->whereNotNull('attribute.attribute_id')
             ->orderBy('name', 'asc')->orderBy('value', 'asc')
             ->pluck('fullname', 'attribute_value_id');
-
-        /*return AttributeValue::leftJoin('attribute',
-            'attribute_value.attribute_id', '=', 'attribute.attribute_id')
-            ->select(
-                'attribute.attribute_id as attribute_id',
-                'attribute_value.attribute_value_id as attribute_value_id',
-                'attribute_value.value as value',
-                'attribute.name as name'
-            )
-            ->whereNotNull('attribute.attribute_id')
-            ->orderBy('name', 'asc')
-            ->orderBy('value', 'asc')
-            ->get();*/
     }
 }

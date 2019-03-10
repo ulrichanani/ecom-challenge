@@ -32,6 +32,13 @@
                                         <h4>Showing {{ $products->firstItem() }} to {{ $products->lastItem() }}
                                             of {{ $products->total() }} total</h4>
                                     </div>
+                                    <div class="col text-right">
+                                        <nav aria-label="" class="pagination_area text-right mt-0">
+                                            <ul class="pagination">
+                                                {{ $products->links() }}
+                                            </ul>
+                                        </nav>
+                                    </div>
                                     {{--<div class="secand_fillter">
                                         <h4>SORT BY :</h4>
                                         <select class="selectpicker">
@@ -98,7 +105,7 @@
                                     </div>
                                 @endif
                             </div>
-                            <nav aria-label="Page navigation example" class="pagination_area">
+                            <nav aria-label="Page navigation" class="pagination_area">
                                 <ul class="pagination">
                                     {{ $products->links() }}
                                 </ul>

@@ -58,7 +58,7 @@
                             </table>
 
                             <!-- NAV -->
-                            <nav aria-label="Page navigation example">
+                            <nav aria-label="Page navigation">
                                 <ul class="pagination">
                                     <li v-bind:class="{disabled: !pagination.prev_page_url}"
                                         @click="pagination.prev_page_url ? fetchRecords(pagination.prev_page_url) : ''"

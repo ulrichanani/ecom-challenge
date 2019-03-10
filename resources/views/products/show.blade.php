@@ -18,7 +18,6 @@
                                     data-saveperformance="off" data-title="Ishtar X Tussilago" data-param1="25/08/2015"
                                     data-description="">
                                     <!-- MAIN IMAGE -->
-                                    @dump(asset($product->imagePath('image_2')))
                                     <img src="{{ asset($product->imagePath('image')) }}" alt=""
                                          data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"
                                          data-bgparallax="5" class="rev-slidebg" data-no-retina>

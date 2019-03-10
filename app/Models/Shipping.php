@@ -23,14 +23,18 @@ class Shipping extends Model
     }
 
     /*
+     * RELATIONS
+     */
+    public function shippingRegion()
+    {
+        $this->belongsTo(ShippingRegion::class, 'shipping_region_id', 'shipping_region_id');
+    }
+
+    /*
      * HELPERS
      */
     public function getIdAttribute()
     {
         return $this->shipping_id;
-    }
-
-    public function shippingRegion() {
-        $this->belongsTo(ShippingRegion::class);
     }
 }
