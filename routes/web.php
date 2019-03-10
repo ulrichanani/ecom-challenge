@@ -11,13 +11,25 @@
 |
 */
 
-Auth::routes();
 
 Route::group(['middleware' => 'shopping_cart'], function () {
+    Auth::routes();
+
     Route::get('/', 'HomeController@index')->name('home');
-    Route::get('/search', 'HomeController@search')->name('search');
+
+    // User
     Route::get('/user', 'UserController@index')->name('user');
-    Route::get('/user/saved-items', 'UserController@savedItems')->name('user.saved-items');
+    Route::put('/user', 'UserController@update')->name('user.update');
+
+    // Product
+    Route::get('/search', 'ProductsController@search')->name('search');
+    Route::post('products/{product}/reviews', 'ProductsController@addReview')->name('products.addReview');
+    Route::resource('products', 'ProductsController')->only(['index', 'show']);
+
+    Route::group(['middleware' => 'products_page'], function () {
+        Route::resource('departments', 'DepartmentsController')->only(['index', 'show']);
+        Route::resource('categories', 'CategoriesController')->only(['index', 'show']);
+    });
 
     // Cart
     Route::get('/cart', 'CartController@index')->name('cart');
@@ -26,14 +38,6 @@ Route::group(['middleware' => 'shopping_cart'], function () {
     Route::post('/cart/save-for-later/{item}', 'CartController@saveForLater')->name('cart.save-for-later');
     Route::post('/cart/move-to-cart/{item}', 'CartController@moveToCart')->name('cart.move-to-cart');
     Route::delete('/cart/remove-item/{item}', 'CartController@removeItem')->name('cart.remove-item');
-
-    Route::group(['middleware' => 'products_page'], function () {
-        Route::resource('departments', 'DepartmentsController')->only(['index', 'show']);
-        Route::resource('categories', 'CategoriesController')->only(['index', 'show']);
-    });
-
-    Route::post('products/{product}/reviews', 'ProductsController@addReview')->name('products.addReview');
-    Route::resource('products', 'ProductsController')->only(['index', 'show']);
 });
 
 /**

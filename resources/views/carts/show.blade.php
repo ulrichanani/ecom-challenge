@@ -85,7 +85,7 @@
                                                 </td>
                                                 <td><p>${{ $cartItem->subTotal }}</p></td>
                                                 <td><p><a href="{{ route('cart.save-for-later', $cartItem) }}"
-                                                          data-submit-form="form-submit">
+                                                          data-submit-form="form-submit" data-submit-noconfirm>
                                                             Save for later</a></p></td>
                                             </tr>
                                         @endforeach

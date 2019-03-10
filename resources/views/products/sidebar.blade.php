@@ -2,31 +2,57 @@
     <div class="categories_sidebar">
         <aside class="l_widgest l_p_categories_widget">
             <div class="l_w_title">
+                <h3>Search</h3>
+            </div>
+            {!! Form::open(['url' => '/search', 'method' => 'get']) !!}
+            <div class="form-inline">
+                <div class="form-group">
+                    {!! Form::text('query', ($query ?? ''), [
+                    'class' => 'form-control',
+                    'placeholder' => "Enter your search",
+                    'required',
+                     'minlength' => 2,
+                    ]) !!}
+                    <input type="submit" value="Ok" class="btn btn-primary ml-1">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input"
+                           {{ $searchInBlock ? 'checked' : '' }}
+                           name="search_block" id="search_block">
+                    <label class="form-check-label" for="search_block">Search in block</label>
+                </div>
+            </div>
+            {{ Form::close() }}
+        </aside>
+        <aside class="l_widgest l_p_categories_widget">
+            <div class="l_w_title">
                 <h3>Departments</h3>
             </div>
             <ul class="navbar-nav">
                 @foreach($DEPARTMENTS as $department)
                     <li class="nav-item">
-                        <a class="nav-link {{ $department->id === $currentDepartment->id ? 'font-weight-bold' : '' }}"
+                        <a class="nav-link"
                            href="{{ route('departments.show', $department) }}">{{ $department->name }}</a>
                     </li>
                 @endforeach
             </ul>
         </aside>
         <div class="categories_sidebar">
-            <aside class="l_widgest l_p_categories_widget">
-                <div class="l_w_title">
-                    <h3>{{ $currentDepartment->name }} - Categories</h3>
-                </div>
-                <ul class="navbar-nav">
-                    @foreach($categories as $category)
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
-                        </li>
-                    @endforeach
-                </ul>
-            </aside>
+            @if(!empty($categories))
+                <aside class="l_widgest l_p_categories_widget">
+                    <div class="l_w_title">
+                        <h3>{{ $currentDepartment->name }} - Categories</h3>
+                    </div>
+                    <ul class="navbar-nav">
+                        @foreach($categories as $category)
+                            <li class="nav-item">
+                                <a class="nav-link"
+                                   href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </aside>
+            @endif
             {{--<aside class="l_widgest l_fillter_widget">
                 <div class="l_w_title">
                     <h3>Filter section</h3>
@@ -72,7 +98,7 @@
                     </aside>
                 @endif
             @endforeach--}}
-            @if($featured_products)
+            @if(!empty($featured_products))
                 <aside class="l_widgest l_feature_widget">
                     <div class="l_w_title">
                         <h3>Featured Products</h3>

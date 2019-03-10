@@ -84,7 +84,8 @@
                                         onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
                                         class="reduced items-count" type="button"><i class="icon_minus-06"></i>
                                     </button>
-                                    <input type="number" name="qty" id="sst" maxlength="12" value="{{ $CART->where('product_id', $product->id)->first()->quantity ?? 1 }}"
+                                    <input type="number" name="qty" id="sst" maxlength="12"
+                                           value="{{ $CART->where('product_id', $product->id)->first()->quantity ?? 1 }}"
                                            min="0" title="Quantity:" class="input-text qty">
                                     <button
                                         onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
@@ -133,27 +134,33 @@
                     <p>{{ $product->description }}</p>
                 </div>
                 <div class="tab-pane fade" id="nav-reviews" role="tabpanel" aria-labelledby="nav-reviews-tab">
-                    @foreach($product->reviews()->with('customer')->get() as $review)
-                        <div class="row">
-                            <div class="col">
-                                <h4>{{ $review->customer->name }}</h4>
-                                <ul>
-                                    @for ($i = 0; $i < $review->rating; $i++)
-                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                    @endfor
-                                    @for ($i = 0; $i < 5 - $review->rating; $i++)
-                                        <li><a href="#"><i class="fa fa-star" style="color: #e0e0e0"></i></a></li>
-                                    @endfor
-                                </ul>
-                                <p>{{ $review->review }}</p>
+                    @if($reviews->isNotEmpty())
+                        @foreach($reviews as $review)
+                            <div class="row">
+                                <div class="col">
+                                    <h4>{{ $review->customer->name }}</h4>
+                                    <ul>
+                                        @for ($i = 0; $i < $review->rating; $i++)
+                                            <li><a href="#"><i class="fa fa-star"></i></a></li>
+                                        @endfor
+                                        @for ($i = 0; $i < 5 - $review->rating; $i++)
+                                            <li><a href="#"><i class="fa fa-star" style="color: #e0e0e0"></i></a></li>
+                                        @endfor
+                                    </ul>
+                                    <p>{{ $review->review }}</p>
+                                </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @else
+                        <p>No reviews.</p>
+                    @endif
                 </div>
                 <div class="tab-pane fade" id="nav-add-review" role="tabpanel" aria-labelledby="nav-add-review-tab">
                     @guest
-                        You must <a href="{{ route('login') }}">sign in</a> to add a review.
-                        If you don't have an account yet, please <a href="{{ route('register') }}">register</a>.
+                        <p>
+                            You must <a href="{{ route('login') }}">sign in</a> to add a review.
+                            If you don't have an account yet, please <a href="{{ route('register') }}">register</a>.
+                        </p>
                     @else
                     <!-- ADD REVIEW FORM -->
                         <form action="{{ route('products.addReview', $product) }}" method="post">

@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -9,6 +8,8 @@ require('./bootstrap');
 
 require('./app-vue');
 
+require('./utilities/global-functions')
+
 
 /**
  * PLUGINS
@@ -16,13 +17,13 @@ require('./app-vue');
 // require('./plugins-setup/datatables');
 // require('./plugins-setup/select2');
 
-$(document).ready(function() {
+$(document).ready(function () {
 
-   /* $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });*/
+    /* $.ajaxSetup({
+         headers: {
+             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+     });*/
 
     /*
      * DELETE FORM SUBMIT
@@ -39,13 +40,16 @@ $(document).ready(function() {
     $('[data-submit-form]').click(function (e) {
         e.preventDefault();
 
-        if (confirm('Are you sure ?')) {
-            let frm = $(e.currentTarget).attr('data-submit-form')
-            let url = $(e.currentTarget).attr('[data-submit-url]') || $(e.currentTarget).attr('href')
+        let needConfirm = $(e.currentTarget).attr('data-submit-noconfirm') === undefined;
+        if (needConfirm && !confirm('Are you sure ?'))
+            return
 
-            if(!frm || !url) return
+        let frm = $(e.currentTarget).attr('data-submit-form')
+        let url = $(e.currentTarget).attr('[data-submit-url]') || $(e.currentTarget).attr('href')
 
-            $('#' + frm).attr('action', url).submit()
-        }
+        if (!frm || !url) return
+
+        $('#' + frm).attr('action', url).submit()
+
     });
 });

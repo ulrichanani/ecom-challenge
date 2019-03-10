@@ -2,18 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Category;
+use Illuminate\Contracts\View\Factory as ViewFactory;
+use Illuminate\Routing\Redirector;
+use Illuminate\Routing\ResponseFactory;
 
 class HomeController extends Controller
 {
+    private $view;
+    private $response;
+    /**
+     * @var Redirector
+     */
+    private $redirect;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param ViewFactory     $view
+     * @param ResponseFactory $response
+     * @param Redirector      $redirect
      */
-    public function __construct()
+    public function __construct(ViewFactory $view, ResponseFactory $response, Redirector $redirect)
     {
-        // $this->middleware('auth');
+        $this->view = $view;
+        $this->response = $response;
+        $this->redirect = $redirect;
     }
 
     /**
@@ -23,7 +37,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $url = \Session::get('PRODUCTS_PAGE');
+        if (!empty($url))
+            return $this->redirect->to($url);
+
+        return $this->redirect->route('categories.show', Category::first()->id);
     }
 
     /**
@@ -33,6 +51,6 @@ class HomeController extends Controller
      */
     public function search()
     {
-        return view('search');
+        return $this->view->make('search');
     }
 }

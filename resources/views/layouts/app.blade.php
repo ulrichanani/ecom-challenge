@@ -35,7 +35,7 @@
     <link href="{{ asset('css/responsive.css') }}" rel="stylesheet">
 
     <!-- App Styles -->
-    {{--<link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/front.css') }}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

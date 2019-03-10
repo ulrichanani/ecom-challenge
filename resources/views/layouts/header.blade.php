@@ -5,34 +5,31 @@
             <div class="carousel_top_h_inner">
                 <div class="float-md-left">
                     <div class="top_header_left">
-                        <div class="selector">
-                            {{--<select class="language_drop" name="countries" id="countries" style="width:300px;">
-                                <option value='yt' data-image="/img/icon/flag-1.png" data-imagecss="flag yt"
-                                        data-title="English">English
-                                </option>
-                                <option value='yu' data-image="/img/icon/flag-1.png" data-imagecss="flag yu"
-                                        data-title="Bangladesh">Bangla
-                                </option>
-                                <option value='yt' data-image="/img/icon/flag-1.png" data-imagecss="flag yt"
-                                        data-title="English">English
-                                </option>
-                                <option value='yu' data-image="/img/icon/flag-1.png" data-imagecss="flag yu"
-                                        data-title="Bangladesh">Bangla
-                                </option>
-                            </select>--}}
-                        </div>
-                        {{--<select class="selectpicker usd_select">
-                            <option>USD</option>
-                            <option>$</option>
-                            <option>$</option>
-                        </select>--}}
+                        <i class="fa fa-phone"></i> Call Us: <span>+84 987 654 321</span> |
+                        <i class="fa fa-envelope"></i> Email: <span>support@yourdomain.com</span>
                     </div>
                 </div>
                 <div class="float-md-right">
                     <div class="top_header_middle">
-                        <a href="#"><i class="fa fa-phone"></i> Call Us: <span>+84 987 654 321</span></a>
-                        <a href="#"><i class="fa fa-envelope"></i> Email: <span>support@yourdomain.com</span></a>
+                        <strong>
+                        @guest
+                            <a href="/login">
+                                <i class="fa fa-exit"></i> Login
+                            </a>
+                            <a href="/register">
+                                <i class="fa fa-exit"></i> Register
+                            </a>
+                        @else
+                            <a href="/logout" onclick="event.preventDefault();
+                        document.getElementById('form-logout').submit()">
+                                <i class="fa fa-exit"></i> Logout
+                            </a>
+                        @endif
+                        </strong>
                     </div>
+                    <form action="/logout" method="post" id="form-logout" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
@@ -87,8 +84,12 @@
                         @endif
                     </ul>
                     <ul class="navbar-nav justify-content-end">
-                        <li class="search_icon"><a href="/search"><i class="icon-magnifier icons"></i></a></li>
-                        <li class="user_icon"><a href="/user"><i class="icon-user icons"></i></a></li>
+                        {{--<li class="search_icon"><a href="/search"><i class="icon-magnifier icons"></i></a></li>--}}
+                        @auth
+                            <li class="user_icon"><a href="/user" data-toggle="tooltip"
+                                                     title="@auth My space @else Login/Register @endif">
+                                    <i class="icon-user icons"></i></a></li>
+                        @endauth
                         <li class="cart_cart"><a href="/cart" id="cartCount" data-cart-count="{{ $CART->count() }}">
                                 <i class="icon-handbag icons"></i>
                                 {{ $CART->count() }}

@@ -12,17 +12,34 @@ class Customer extends Authenticatable
     /*
      * ELOQUENT CONFIG
      */
-    public $timestamps = false;
+    const FIELDS_LABELS = [
+        'customer_id' => 'Customer',
+        'name' => 'Name',
+        'email' => 'Email',
+        'password' => 'Password',
+        'credit_card' => 'Credit card',
+        'address_1' => 'Address 1',
+        'address_2' => 'Address 2',
+        'city' => 'City',
+        'region' => 'Region',
+        'postal_code' => 'Postal code',
+        'country' => 'Country',
+        'shipping_region_id' => 'Shipping region',
+        'day_phone' => 'Day phone',
+        'eve_phone' => 'Evening phone',
+        'mob_phone' => 'Mobile phone'
+    ];
 
+    public $timestamps = false;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'customer_id', 'name', 'email', 'password',
+        'customer_id', 'name', 'email', 'password', 'credit_card', 'address_1', 'address_2', 'city', 'region',
+        'postal_code', 'country', 'shipping_region_id', 'day_phone', 'eve_phone', 'mob_phone'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ShoppingCart;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
@@ -21,16 +21,19 @@ class UserController extends Controller
     {
         $this->view = $view;
         $this->response = $response;
+        $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-
+        return $this->view->make('users.show', [
+            'user' => $request->user()
+        ]);
     }
 
-    public function savedItems()
-    {
-        $savedItems = ShoppingCart::current()->saved()->get();
-        return $this->view->make('users.saved-products', compact('savedItems'));
+    public function update(UpdateUserRequest $request) {
+        dump($request->validated(), $request->user()->getAttributes());
+        $request->user()->update($request->validated());
+        return redirect()->route('user')->with('success', 'Shipping informations updated successfully.');
     }
 }
