@@ -44,7 +44,7 @@
                 axios.delete('/admin/categories/' + this.category.category_id)
                     .then(res => {
                         this.show = false
-                        this.flashMessage.success({message: 'Category deleted succefully !'})
+                        toastr.success('Category deleted succefully !')
                     })
                     .catch(err => handleError(err))
             },

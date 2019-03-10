@@ -125,7 +125,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.attributeValues.push(data.data)
-                        this.flashMessage.success({message: 'New value added succefully !'})
+                        toastr.success('New value added succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -140,7 +140,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Value updated succefully !'})
+                        toastr.success('Value updated succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data

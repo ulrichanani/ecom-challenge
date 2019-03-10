@@ -133,7 +133,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.categories.push(data.data)
-                        this.flashMessage.success({message: 'New category added succefully !'})
+                        toastr.success('New category added succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -148,7 +148,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Category updated succefully !'})
+                        toastr.success('Category updated succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data

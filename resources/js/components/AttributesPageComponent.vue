@@ -95,6 +95,10 @@
             this.fetchRecords();
         },
 
+        mounted() {
+
+        },
+
         methods: {
             saveRecord() {
                 if(this.formData.attribute_id !== null) {
@@ -110,7 +114,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.attributes.push(data.data)
-                        this.flashMessage.success({message: 'New attribute added succefully !'})
+                        toastr.success('New attribute added succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -125,7 +129,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Attribute updated succefully !'})
+                        toastr.success('Attribute updated succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data

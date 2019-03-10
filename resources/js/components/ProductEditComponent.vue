@@ -152,7 +152,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.$emit('recordCreated')
-                        this.flashMessage.success({message: 'New product added succefully !'})
+                        toastr.success('New product added succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
@@ -167,7 +167,7 @@
                         this.errors = {}
                         this.resetForm()
                         this.$emit('recordUpdated')
-                        this.flashMessage.success({message: 'Product updated succefully !'})
+                        toastr.success('Product updated succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data

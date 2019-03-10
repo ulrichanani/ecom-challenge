@@ -42,7 +42,7 @@
                 axios.delete(this.base_url + this.attribute.attribute_id)
                     .then(res => {
                         this.show = false
-                        this.flashMessage.success({message: 'Attribute deleted succefully !'})
+                        toastr.success('Attribute deleted succefully !')
                     })
                     .catch(err => handleError(err))
             },

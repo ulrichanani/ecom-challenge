@@ -69,7 +69,7 @@ class Customer extends Authenticatable
      */
     public function delete()
     {
-        $result = \DB::raw("call catalog_delete_customer($this->id)");
+        $result = \DB::select("call catalog_delete_customer($this->id)");
         return is_null(object_get($result[0], '-1'));
     }
 

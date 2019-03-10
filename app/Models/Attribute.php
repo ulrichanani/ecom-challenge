@@ -43,7 +43,7 @@ class Attribute extends Model
      */
     public function delete()
     {
-        $result = \DB::raw("call catalog_delete_attribute($this->id)");
+        $result = \DB::select("call catalog_delete_attribute($this->id)");
         return is_null(object_get($result[0], '-1'));
     }
 

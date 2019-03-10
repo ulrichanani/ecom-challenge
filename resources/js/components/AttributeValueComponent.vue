@@ -39,7 +39,7 @@
                 axios.delete(this.base_url + this.attributeValue.attribute_value_id)
                     .then(res => {
                         this.show = false
-                        this.flashMessage.success({message: 'Attibute value deleted succefully !'})
+                        toastr.success('Attibute value deleted succefully !')
                     })
                     .catch(err => console.log(err))
             },

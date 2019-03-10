@@ -13,8 +13,6 @@ const mix = require('laravel-mix');
 
 mix
     // Global Assets
-    .sass('resources/sass/app.scss', 'public/css/app.css')
-    .js('resources/js/app.js', 'public/js/app.js')
     .scripts('node_modules/toastr/toastr.js', 'public/js/app-vendor.js')
 
     // Admin pannel assets

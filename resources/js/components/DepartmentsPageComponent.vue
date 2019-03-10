@@ -116,13 +116,13 @@
                         this.errors = {}
                         this.resetForm()
                         this.departments.push(data.data)
-                        this.flashMessage.success({message: 'New department added succefully !'})
+                        toastr.success('New department added succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
                         this.errors = data.errors || {}
                         /*if (data.message) {
-                            this.flashMessage.error({message: data.message})
+                            toastr.error(data.message)
                         }*/
                     })
             },
@@ -134,13 +134,13 @@
                         this.errors = {}
                         this.resetForm()
                         this.fetchRecords()
-                        this.flashMessage.success({message: 'Department updated succefully !'})
+                        toastr.success('Department updated succefully !')
                     })
                     .catch(err => {
                         let data = err.response.data
                         this.errors = data.errors || {}
                         /*if (data.message) {
-                            this.flashMessage.error({message: data.message})
+                            toastr.error(data.message)
                         }*/
                     })
             },

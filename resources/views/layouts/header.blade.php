@@ -14,15 +14,18 @@
                         <strong>
                         @guest
                             <a href="/login">
-                                <i class="fa fa-exit"></i> Login
+                                <i class="fa fa-sign-in"></i> Login
                             </a>
                             <a href="/register">
-                                <i class="fa fa-exit"></i> Register
+                                <i class="fa fa-sign-out"></i> Register
                             </a>
                         @else
+                            <a href="{{ route('admin.dashboard') }}">
+                                <i class="fa fa-home"></i> Shop Admin
+                            </a>
                             <a href="/logout" onclick="event.preventDefault();
                         document.getElementById('form-logout').submit()">
-                                <i class="fa fa-exit"></i> Logout
+                                <i class="fa fa-sign-out"></i> Logout
                             </a>
                         @endif
                         </strong>

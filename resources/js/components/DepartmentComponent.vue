@@ -41,7 +41,7 @@
                 axios.delete('/admin/departments/' + this.department.department_id)
                     .then(res => {
                         this.show = false
-                        this.flashMessage.success({message: 'Department deleted succefully !'})
+                        toastr.success('Department deleted succefully !')
                     })
                     .catch(err => handleError(err))
             },
