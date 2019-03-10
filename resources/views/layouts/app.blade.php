@@ -63,11 +63,6 @@
     </form>
 </div>
 
-{{--<script type="text/javascript" src=" {{ asset('js/front-vendor.js') }}"></script>
-<script type="text/javascript" src=" {{ asset('js/front.js') }}"></script>
-<script type="text/javascript" src="{{ asset('js/app-vendor.js') }}"></script>--}}
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="{{ asset('/js/jquery-3.2.1.min.js') }}"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -97,6 +92,11 @@
 <script src="{{ asset('/vendors/jquery-ui/jquery-ui.js') }}"></script>
 <script src="{{ asset('js/full-page.js') }}"></script>
 <script src="{{ asset('/js/theme.js') }}"></script>
+
+{{--<script type="text/javascript" src=" {{ asset('js/front-vendor.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/app-vendor.js') }}"></script>--}}
+<script type="text/javascript" src=" {{ asset('js/front.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>--}}
 
 @yield('page-js')
 </body>

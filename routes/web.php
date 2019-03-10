@@ -34,6 +34,8 @@ Route::group(['middleware' => 'shopping_cart'], function () {
     // Cart
     Route::get('/cart', 'CartController@index')->name('cart');
     Route::put('/cart', 'CartController@update')->name('cart.update');
+    Route::get('/checkout', 'CartController@checkout')->name('checkout')->middleware('auth');
+    Route::post('/place-order', 'CartController@order')->name('order')->middleware('auth');
     Route::post('/cart/add-item/{product}', 'CartController@addItem')->name('cart.add-item');
     Route::post('/cart/save-for-later/{item}', 'CartController@saveForLater')->name('cart.save-for-later');
     Route::post('/cart/move-to-cart/{item}', 'CartController@moveToCart')->name('cart.move-to-cart');

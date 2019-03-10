@@ -18,6 +18,7 @@
                                     data-saveperformance="off" data-title="Ishtar X Tussilago" data-param1="25/08/2015"
                                     data-description="">
                                     <!-- MAIN IMAGE -->
+                                    @dump(asset($product->imagePath('image_2')))
                                     <img src="{{ asset($product->imagePath('image')) }}" alt=""
                                          data-bgposition="center center" data-bgfit="cover" data-bgrepeat="no-repeat"
                                          data-bgparallax="5" class="rev-slidebg" data-no-retina>
@@ -28,11 +29,11 @@
                                     <li data-index="rs-136228343" data-transition="scaledownfrombottom"
                                         data-slotamount="7" data-easein="Power3.easeInOut"
                                         data-easeout="Power3.easeInOut" data-masterspeed="1500"
-                                        data-thumb="{{ asset($product->imagePath('image2')) }}"
+                                        data-thumb="{{ asset($product->imagePath('image_2')) }}"
                                         data-rotate="0" data-saveperformance="off" data-title="Los Angeles"
                                         data-param1="13/08/2015" data-description="">
                                         <!-- MAIN IMAGE -->
-                                        <img src="{{ asset($product->imagePath('image2')) }}" alt=""
+                                        <img src="{{ asset($product->imagePath('image_2')) }}" alt=""
                                              data-bgposition="center center" data-bgfit="cover"
                                              data-bgrepeat="no-repeat" data-bgparallax="5" class="rev-slidebg"
                                              data-no-retina>
@@ -95,17 +96,6 @@
                                 <button class="add_cart_btn" href="#" type="submit">Add to cart</button>
                             </div>
                         </form>
-
-                        {{--<div class="shareing_icon">
-                            <h5>share :</h5>
-                            <ul>
-                                <li><a href="#"><i class="social_facebook"></i></a></li>
-                                <li><a href="#"><i class="social_twitter"></i></a></li>
-                                <li><a href="#"><i class="social_pinterest"></i></a></li>
-                                <li><a href="#"><i class="social_instagram"></i></a></li>
-                                <li><a href="#"><i class="social_youtube"></i></a></li>
-                            </ul>
-                        </div>--}}
                     </div>
                 </div>
             </div>

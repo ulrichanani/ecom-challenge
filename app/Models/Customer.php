@@ -27,7 +27,8 @@ class Customer extends Authenticatable
         'shipping_region_id' => 'Shipping region',
         'day_phone' => 'Day phone',
         'eve_phone' => 'Evening phone',
-        'mob_phone' => 'Mobile phone'
+        'mob_phone' => 'Mobile phone',
+        'shipping_id' => 'Shipping Type'
     ];
 
     public $timestamps = false;
@@ -70,5 +71,13 @@ class Customer extends Authenticatable
     {
         $result = \DB::raw("call catalog_delete_customer($this->id)");
         return is_null(object_get($result[0], '-1'));
+    }
+
+    /*
+     * HELPERS
+     */
+    public function getIdAttribute()
+    {
+        return $this->customer_id;
     }
 }

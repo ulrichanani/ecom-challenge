@@ -33,3 +33,15 @@
     color: #aaa;
     font-size: medium;
 }
+
+#app {
+    .cartTotals {
+        width: auto;
+        font-weight: bold;
+    }
+
+    .calculate_shop_inner {
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+}

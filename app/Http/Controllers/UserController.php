@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateCustomerRequest;
 use Illuminate\Http\Request;
 use Illuminate\Routing\ResponseFactory;
 use Illuminate\Contracts\View\Factory as ViewFactory;
@@ -31,7 +31,7 @@ class UserController extends Controller
         ]);
     }
 
-    public function update(UpdateUserRequest $request) {
+    public function update(UpdateCustomerRequest $request) {
         dump($request->validated(), $request->user()->getAttributes());
         $request->user()->update($request->validated());
         return redirect()->route('user')->with('success', 'Shipping informations updated successfully.');

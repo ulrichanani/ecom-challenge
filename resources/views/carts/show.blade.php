@@ -100,10 +100,8 @@
                             <div class="cart_totals">
                                 <div class="cart_total_inner">
                                     <ul>
-                                        <li><a href="#"><span>Cart Subtotal</span> ${{ $CART->sum('subTotal') }}
-                                            </a>
-                                        </li>
-                                        <li><a href="#"><span>Totals</span> ${{ $CART->sum('subTotal') }}</a>
+                                        <li><a href="#"><span>Cart Subtotal</span>
+                                                <span class="cartTotals" id="cartSubtotal">{{ $CART->sum('subTotal') }}</span></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -120,9 +118,9 @@
                                     <a href="{{ \Session::get('PRODUCTS_PAGE') }}"
                                        class="btn btn-primary update_btn">Continue shopping
                                     </a>
-                                    <button type="submit" class="btn btn-primary checkout_btn ml-0">Proceed to
-                                        checkout
-                                    </button>
+                                    <a href="{{ route('checkout') }}" class="btn btn-primary checkout_btn ml-0">
+                                        Proceed to checkout
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +176,7 @@
                                             <td><p>${{ $savedItem->product->realPrice }}</p></td>
                                             <td><p>
                                                     <a href="{{ route('cart.move-to-cart', $savedItem->id) }}"
-                                                       data-submit-form="form-submit">
+                                                       data-submit-form="form-submit"  data-submit-noconfirm>
                                                         Move to cart</a>
                                                     <br>
                                                     <a href="{{ route('cart.remove-item', $savedItem->id) }}"
@@ -201,7 +199,6 @@
             </div>
         </div>
     </section>
-
 
     <form id="form-submit" action="" method="post" style="display: none;">
         @csrf

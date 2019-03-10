@@ -17,7 +17,7 @@
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input"
-                           {{ $searchInBlock ? 'checked' : '' }}
+                           {{ ($searchInBlock ?? '') ? 'checked' : '' }}
                            name="search_block" id="search_block">
                     <label class="form-check-label" for="search_block">Search in block</label>
                 </div>

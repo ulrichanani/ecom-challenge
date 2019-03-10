@@ -16,17 +16,6 @@ try {
     // SELECT2
     require('select2')( window, $ );
 
-    // DATATABLES
-    // var dt_bs4 = require( 'datatables.net-bs4' )( window, $ );
-    // // var dt_buttons_ = require( 'datatables.net-buttons' )( window, $ );
-    // var dt_buttons_bs4_ = require( 'datatables.net-buttons-bs4' )( window, $ );
-    // require( 'datatables.net-buttons/js/buttons.colVis.js' )(); // Column visibility
-    // require( 'datatables.net-buttons/js/buttons.html5.js' )();  // HTML 5 file export
-    // require( 'datatables.net-buttons/js/buttons.flash.js' )();  // Flash file export
-    // require( 'datatables.net-buttons/js/buttons.print.js' )();  // Print view
-    // var dt_colreorder_bs4_ = require( 'datatables.net-colreorder-bs4' )( window, $ );
-    // var dt_responsive_bs4_ = require( 'datatables.net-responsive-bs4' )( window, $ );
-
 } catch (e) {}
 
 /**

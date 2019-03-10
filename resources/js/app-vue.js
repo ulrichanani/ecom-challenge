@@ -9,10 +9,10 @@
 
 window.Vue = require('vue');
 
-/*import Vue from 'vue';
-import VueFlashMessage from 'vue-flash-message';
-require('vue-flash-message/dist/vue-flash-message.min.css');
-Vue.use(VueFlashMessage);*/
+// /*import Vue from 'vue';
+// import VueFlashMessage from 'vue-flash-message';
+// require('vue-flash-message/dist/vue-flash-message.min.css');
+// Vue.use(VueFlashMessage);*/
 
 import Vue from 'vue';
 import FlashMessage from '@smartweb/vue-flash-message';

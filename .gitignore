@@ -21,3 +21,6 @@ yarn-error.log
 !/public/mix.manifest.json
 !/public/robots.txt
 !/public/web.config
+
+
+.DS_Store
