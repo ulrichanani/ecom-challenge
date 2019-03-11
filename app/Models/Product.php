@@ -66,6 +66,11 @@ class Product extends Model
             'product_id', 'attribute_value_id');
     }
 
+    public function shoppingCart()
+    {
+        return $this->hasMany(ShoppingCart::class, 'product_id','product_id');
+    }
+
     /*
      * ACCESSORS
      */
@@ -84,7 +89,11 @@ class Product extends Model
             Storage::disk('public')->delete('product_images/' . $this->image_2);
             Storage::disk('public')->delete('product_images/' . $this->thumbnail);
         } catch(Exception $e) {}
-        \DB::select("call catalog_delete_product($this->id)");
+
+        $this->attributeValues()->delete();
+        $this->categories()->delete();
+        $this->shoppingCart()->delete();
+        // \DB::select("call catalog_delete_product($this->id)");
         return true;
     }
 
