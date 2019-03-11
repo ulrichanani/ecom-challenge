@@ -85,10 +85,10 @@ class ProductsController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $thumbnail = $this->storeFile($request->file('thumbnail'));
-        $image1 = $this->storeFile($request->file('image'));
+        $thumbnail = $this->storeProductImage($request->file('thumbnail'));
+        $image1 = $this->storeProductImage($request->file('image'));
         $image2 = $request->file('image_2');
-        $image2 = $image2 instanceof UploadedFile ? $this->storeFile($image2) : null;
+        $image2 = $image2 instanceof UploadedFile ? $this->storeProductImage($image2) : null;
 
         $product = Product::create([
             'name' => $request->input('name'),
@@ -145,13 +145,13 @@ class ProductsController extends Controller
     {
         $data = [];
         if ($request->file('image') instanceof UploadedFile) {
-            $data['image'] = $this->storeFile($request->file('image'));
+            $data['image'] = $this->storeProductImage($request->file('image'));
         }
         if ($request->file('image_2') instanceof UploadedFile) {
-            $data['image_2'] = $this->storeFile($request->file('image_2'));
+            $data['image_2'] = $this->storeProductImage($request->file('image_2'));
         }
         if ($request->file('thumbnail') instanceof UploadedFile) {
-            $data['thumbnail'] = $this->storeFile($request->file('thumbnail'));
+            $data['thumbnail'] = $this->storeProductImage($request->file('thumbnail'));
         }
 
         $data = array_merge($data, [
