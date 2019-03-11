@@ -32,7 +32,6 @@ class UserController extends Controller
     }
 
     public function update(UpdateCustomerRequest $request) {
-        dump($request->validated(), $request->user()->getAttributes());
         $request->user()->update($request->validated());
         return redirect()->route('user')->with('success', 'Shipping informations updated successfully.');
     }

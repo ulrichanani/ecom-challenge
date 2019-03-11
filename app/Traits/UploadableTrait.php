@@ -25,7 +25,7 @@ trait UploadableTrait
      */
     public function storeProductImage(UploadedFile $file)
     {
-        return str_replace_first('product_images', $file->store('product_images', ['disk' => 'public']));
+        return str_replace_first('product_images/', '', $file->store('product_images', ['disk' => 'public']));
     }
 
     /**
