@@ -55,6 +55,7 @@
                                                 v-bind:class="{ 'is-invalid' : errors.attributes}"
                                                 v-model="selectedAttributes">
                                             <option v-for="option in allAttributesValues"
+                                                    :key="option.attribute_value_id"
                                                     v-bind:value="option.attribute_value_id">
                                                 {{ option.name }} : {{ option.value }}
                                             </option>
@@ -71,7 +72,9 @@
                                                 multiple
                                                 v-bind:class="{ 'is-invalid' : errors.categories}"
                                                 v-model="selectedCategories">
-                                            <option v-for="option in allCategories" v-bind:value="option.category_id">
+                                            <option v-for="option in allCategories" 
+                                                :key="option.category_id"
+                                                v-bind:value="option.category_id">
                                                 {{ option.name }}
                                             </option>
                                         </select>
@@ -131,7 +134,7 @@
         },
 
         created() {
-            this.base_url = `/admin/products/`
+            this.base_url = `${window.url_prefix}/admin/products/`
             this.fetchProduct()
             this.fetchAttributesAndValues()
             this.fetchCategories()
@@ -196,7 +199,7 @@
             },
 
             fetchAttributesAndValues() {
-                let page_url = '/admin/attributes-values'
+                let page_url = window.url_prefix + '/admin/attributes-values'
                 axios.get(page_url)
                     .then(({data}) => {
                         this.allAttributesValues = data.data
@@ -205,7 +208,7 @@
             },
 
             fetchCategories() {
-                let page_url = '/admin/categories/all'
+                let page_url = window.url_prefix + '/admin/categories/all'
                 axios.get(page_url)
                     .then(({data}) => {
                         this.allCategories = data.data

@@ -33,9 +33,9 @@ window.handleError = (err) => {
     console.log(err.response);
     if(err.response && err.response.data) {
         if(err.response.data.message) {
-            app.flashMessage.error({message: err.response.data.message})
+            toastr.error(err.response.data.message)
         } else {
-            app.flashMessage.error({message: 'An error occured!'})
+            toastr.error('Something went wrong, please retry later.')
         }
     }
 }

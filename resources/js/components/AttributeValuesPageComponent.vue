@@ -38,7 +38,7 @@
                                 List of values for attribute : {{ attribute.name || '' }}
                             </h3>
                             <div class="mb-3">
-                                <a class="btn btn-link" :href="`/admin/attributes/`">
+                                <a class="btn btn-link" :href="`${window.url_prefix}/admin/attributes/`">
                                     <i class="fa fa-arrow-left"></i> Go back to attributes</a>
                             </div>
                             <h6 v-if="attributeValues.length === 0">There's no value yet for this attribute</h6>
@@ -105,7 +105,7 @@
         },
 
         created() {
-            this.base_url = `/admin/attributes/${this.attribute_id}/values/`
+            this.base_url = `${window.url_prefix}/admin/attributes/${this.attribute_id}/values/`
             this.fetchRecords();
             this.fetchAttribute();
         },
@@ -159,7 +159,7 @@
             },
 
             fetchAttribute() {
-                let page_url = `/admin/attributes/${this.attribute_id}`
+                let page_url = `${window.url_prefix}/admin/attributes/${this.attribute_id}`
                 axios.get(page_url)
                     .then(({data}) => {
                         this.attribute = data.data

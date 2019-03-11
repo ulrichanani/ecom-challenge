@@ -8,7 +8,7 @@
         <td class="actions">
             <div>
                 <a class="btn btn-primary btn-sm mb-1"
-                   v-bind:href="`/admin/orders/${order.order_id}`">
+                   v-bind:href="`${window.url_prefix}/admin/orders/${order.order_id}`">
                     Show details</a>
                 <!--<button class="btn btn-primary btn-sm mb-1" @click="editRecord">Edit</button>-->
                 <!--<button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>-->

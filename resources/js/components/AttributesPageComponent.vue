@@ -91,7 +91,7 @@
         },
 
         created() {
-            this.base_url = '/admin/attributes/'
+            this.base_url = window.url_prefix + '/admin/attributes/'
             this.fetchRecords();
         },
 
