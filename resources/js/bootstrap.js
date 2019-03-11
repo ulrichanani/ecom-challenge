@@ -26,7 +26,7 @@ try {
 
 window.axios = require('axios');
 window.toastr = require('toastr');
-url_prefix = '/'
+url_prefix = '/turing/'
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
