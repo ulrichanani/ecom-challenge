@@ -173,7 +173,6 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Category             $category
      * @param  \App\Models\Product $product
      * @return ProductResource
      * @throws \Exception

@@ -1,5 +1,5 @@
 <template>
-    <tr>
+    <tr v-if="show">
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>
         <td>{{ product.price }}</td>
@@ -11,7 +11,7 @@
                    v-bind:href="`${this.$urlPrefix}admin/products/${product.product_id}/edit`">
                     Edit</a>
                 <!--<button class="btn btn-primary btn-sm mb-1" @click="editRecord">Edit</button>-->
-                <!--<button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>-->
+                <button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>
             </div>
         </td>
     </tr>
@@ -28,29 +28,31 @@
                 discounted_price: Number,
                 display: Number
             },
+        },
 
+        data() {
+            return {
+                base_url: '',
+                show: true
+            }
         },
 
         created() {
-
+            this.base_url = this.$urlPrefix + 'admin/products/'
         },
 
         methods: {
-            /*deleteRecord() {
+            deleteRecord() {
                 if(!confirm('Are you sure?'))
                     return
 
                 axios.delete(this.base_url + this.product.product_id)
                     .then(res => {
                         this.show = false
-                        toastr.success('Category deleted succefully !')
+                        toastr.success('Product deleted succefully !')
                     })
                     .catch(err => console.log(err))
-            },*/
-
-            /*editRecord() {
-                this.$emit('editClicked', this.product)
-            }*/
+            },
         }
     }
 </script>

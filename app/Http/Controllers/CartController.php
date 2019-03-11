@@ -159,7 +159,9 @@ class CartController extends Controller
         }
 
         // Sending notification mail
-        $request->user()->notify(new OrderCreatedNotification($order));
+        try {
+            $request->user()->notify(new OrderCreatedNotification($order));
+        } catch (\Exception $e) {}
 
         // Delete buyed cart items
         ShoppingCart::current()->buyNow()->delete();

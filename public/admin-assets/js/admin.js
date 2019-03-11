@@ -3506,22 +3506,27 @@ __webpack_require__.r(__webpack_exports__);
       display: Number
     }
   },
-  created: function created() {},
+  data: function data() {
+    return {
+      base_url: '',
+      show: true
+    };
+  },
+  created: function created() {
+    this.base_url = this.$urlPrefix + 'admin/products/';
+  },
   methods: {
-    /*deleteRecord() {
-        if(!confirm('Are you sure?'))
-            return
-         axios.delete(this.base_url + this.product.product_id)
-            .then(res => {
-                this.show = false
-                toastr.success('Category deleted succefully !')
-            })
-            .catch(err => console.log(err))
-    },*/
+    deleteRecord: function deleteRecord() {
+      var _this = this;
 
-    /*editRecord() {
-        this.$emit('editClicked', this.product)
-    }*/
+      if (!confirm('Are you sure?')) return;
+      axios.delete(this.base_url + this.product.product_id).then(function (res) {
+        _this.show = false;
+        toastr.success('Product deleted succefully !');
+      }).catch(function (err) {
+        return console.log(err);
+      });
+    }
   }
 });
 
@@ -47270,38 +47275,49 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("tr", [
-    _c("td", [_vm._v(_vm._s(_vm.product.name))]),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.product.description))]),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.product.price))]),
-    _vm._v(" "),
-    _c("td", [_vm._v(_vm._s(_vm.product.discounted_price))]),
-    _vm._v(" "),
-    _c("td", [
-      _vm._v(_vm._s(_vm.product.display === 0 ? "Default" : "Featured"))
-    ]),
-    _vm._v(" "),
-    _c("td", { staticClass: "actions" }, [
-      _c("div", [
-        _c(
-          "a",
-          {
-            staticClass: "btn btn-primary btn-sm mb-1",
-            attrs: {
-              href:
-                this.$urlPrefix +
-                "admin/products/" +
-                _vm.product.product_id +
-                "/edit"
-            }
-          },
-          [_vm._v("\n                Edit")]
-        )
+  return _vm.show
+    ? _c("tr", [
+        _c("td", [_vm._v(_vm._s(_vm.product.name))]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.product.description))]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.product.price))]),
+        _vm._v(" "),
+        _c("td", [_vm._v(_vm._s(_vm.product.discounted_price))]),
+        _vm._v(" "),
+        _c("td", [
+          _vm._v(_vm._s(_vm.product.display === 0 ? "Default" : "Featured"))
+        ]),
+        _vm._v(" "),
+        _c("td", { staticClass: "actions" }, [
+          _c("div", [
+            _c(
+              "a",
+              {
+                staticClass: "btn btn-primary btn-sm mb-1",
+                attrs: {
+                  href:
+                    this.$urlPrefix +
+                    "admin/products/" +
+                    _vm.product.product_id +
+                    "/edit"
+                }
+              },
+              [_vm._v("\n                Edit")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger btn-sm mb-1",
+                on: { click: _vm.deleteRecord }
+              },
+              [_vm._v("Delete")]
+            )
+          ])
+        ])
       ])
-    ])
-  ])
+    : _vm._e()
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -60224,7 +60240,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
-url_prefix = '/turing/';
+url_prefix = '/';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that

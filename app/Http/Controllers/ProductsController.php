@@ -43,11 +43,14 @@ class ProductsController extends Controller
         if (!$request->input('rating'))
             return back()->with('error', 'You must submit a rating for your review.');
 
+        $rating = (int)$request->input('rating');
+        $rating = $rating > 5 ? 5 : $rating;
+
         Review::updateOrCreate([
             'product_id' => $product->id,
             'customer_id' => auth()->id(),
         ], [
-            'rating' => (int)$request->input('rating') % 5,
+            'rating' => $rating,
             'review' => $request->input('review') ?? '',
             'created_on' => now(),
         ]);

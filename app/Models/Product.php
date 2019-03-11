@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -78,8 +79,13 @@ class Product extends Model
      */
     public function delete()
     {
-        $result = \DB::select("call catalog_delete_product($this->id)");
-        return is_null(object_get($result[0], '-1'));
+        try {
+            Storage::disk('public')->delete('product_images/' . $this->image);
+            Storage::disk('public')->delete('product_images/' . $this->image_2);
+            Storage::disk('public')->delete('product_images/' . $this->thumbnail);
+        } catch(Exception $e) {}
+        \DB::select("call catalog_delete_product($this->id)");
+        return true;
     }
 
     /*
