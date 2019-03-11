@@ -55,7 +55,7 @@
                                         @foreach($CART as $cartItem)
                                             <tr>
                                                 <th scope="row">
-                                                    <img src="img/icon/close-icon.png" alt="" class="btn-delete"
+                                                    <img src="{{ asset('img/icon/close-icon.png') }}" alt="" class="btn-delete"
                                                          data-delete-url="{{ route('cart.remove-item', $cartItem->id) }}">
                                                 </th>
                                                 <td>
@@ -153,7 +153,7 @@
                                     @foreach($savedItems as $savedItem)
                                         <tr>
                                             <th scope="row">
-                                                <img src="img/icon/close-icon.png" alt="" class="btn-delete"
+                                                <img src="{{ asset('img/icon/close-icon.png') }}" alt="" class="btn-delete"
                                                      data-delete-url="{{ route('cart.remove-item', $savedItem->id) }}">
                                             </th>
                                             <td>

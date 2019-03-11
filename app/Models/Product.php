@@ -113,7 +113,7 @@ class Product extends Model
 
     public function imagePath($name)
     {
-        return ("/storage/product_images/" . $this->$name) ?? '';
+        return asset('/storage/product_images/' . $this->$name);
     }
 
     public function getRealPriceAttribute()
