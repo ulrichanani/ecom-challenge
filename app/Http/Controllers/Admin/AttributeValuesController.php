@@ -118,7 +118,7 @@ class AttributeValuesController extends Controller
             return new AttributeValueResource($value);
         else
             return $this->response->json([
-                'message' => "You can't delete this resource!"
+                'app_message' => "You can't delete this resource!"
             ], 400);
     }
 

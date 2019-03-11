@@ -32,8 +32,8 @@ const app = new Vue({
 window.handleError = (err) => {
     console.log(err.response);
     if(err.response && err.response.data) {
-        if(err.response.data.message) {
-            toastr.error(err.response.data.message)
+        if(err.response.data.app_message) {
+            toastr.error(err.response.data.app_message)
         } else {
             toastr.error('Something went wrong, please retry later.')
         }

@@ -117,7 +117,7 @@ class CategoriesController extends Controller
             return new CategoryResource($category);
         else
             return $this->response->json([
-                'message' => "You can't delete this resource!"
+                'app_message' => "You can't delete this resource!"
             ], 400);
     }
 
