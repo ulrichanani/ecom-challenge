@@ -26,7 +26,6 @@
 <script src="{{ asset('/vendors/magnify-popup/jquery.magnific-popup.min.js') }}"></script>
 <script src="{{ asset('/vendors/vertical-slider/js/jQuery.verticalCarousel.js') }}"></script>
 <script src="{{ asset('/vendors/jquery-ui/jquery-ui.js') }}"></script>
-<script src="{{ asset('js/full-page.js') }}"></script>
 <script src="{{ asset('/js/theme.js') }}"></script>
 
 <script type="text/javascript" src=" {{ asset('js/front.js') }}"></script>
