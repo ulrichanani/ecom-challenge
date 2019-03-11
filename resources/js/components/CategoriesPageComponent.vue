@@ -44,7 +44,7 @@
                                 List of categories for department : {{ department.name || '' }}
                             </h3>
                             <div class="mb-3">
-                                <a class="btn btn-link" :href="`${window.url_prefix}/admin/departments/`">
+                                <a class="btn btn-link" :href="`${this.$urlPrefix}admin/departments/`">
                                     <i class="fa fa-arrow-left"></i> Go back to departments</a>
                             </div>
                             <h6 v-if="categories.length === 0">There's no category yet in this department</h6>
@@ -113,7 +113,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/departments/${this.department_id}/categories/`
+            this.base_url = `${this.$urlPrefix}admin/departments/${this.department_id}/categories/`
             this.fetchRecords();
             this.fetchDepartment();
         },
@@ -167,7 +167,7 @@
             },
 
             fetchDepartment() {
-                let page_url = `${window.url_prefix}/admin/departments/${this.department_id}`
+                let page_url = `${this.$urlPrefix}admin/departments/${this.department_id}`
                 axios.get(page_url)
                     .then(({data}) => {
                         this.department = data.data

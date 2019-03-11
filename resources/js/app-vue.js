@@ -24,6 +24,8 @@ Vue.component('department-component', require('./components/DepartmentsComponent
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+Vue.prototype.$urlPrefix = window.url_prefix
+
 const app = new Vue({
     el: '#app'
 });

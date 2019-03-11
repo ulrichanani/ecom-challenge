@@ -60,7 +60,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/products/`
+            this.base_url = `${this.$urlPrefix}admin/products/`
             this.fetchRecords();
         },
 

@@ -12,7 +12,7 @@
                             </h3>
                             <div class="mb-3">
                                 <a class="btn btn-link"
-                                   :href="`${window.url_prefix}/admin/departments/${category.department_id}/categories/`">
+                                   :href="`${this.$urlPrefix}admin/departments/${category.department_id}/categories/`">
                                     <i class="fa fa-arrow-left"></i> Go back to categories</a>
                             </div>
                             <h6 v-if="products.length === 0">There's no product yet in this category</h6>
@@ -81,7 +81,7 @@
             if(this.category_id < 1)
                 return
 
-            this.base_url = `${window.url_prefix}/admin/categories/${this.category_id}/products/`
+            this.base_url = `${this.$urlPrefix}admin/categories/${this.category_id}/products/`
             this.fetchCategory()
             this.fetchRecords();
         },
@@ -98,7 +98,7 @@
             },
 
             fetchCategory() {
-                let page_url = `${window.url_prefix}/admin/categories/${this.category_id}`
+                let page_url = `${this.$urlPrefix}admin/categories/${this.category_id}`
                 axios.get(page_url)
                     .then(({data}) => {
                         this.category = data.data

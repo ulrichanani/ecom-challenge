@@ -60,7 +60,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/orders/`
+            this.base_url = `${this.$urlPrefix}admin/orders/`
         },
 
         mounted() {

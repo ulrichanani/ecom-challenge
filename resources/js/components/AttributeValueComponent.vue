@@ -28,7 +28,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/attributes/${this.attributeValue.attribute_id}/values/`
+            this.base_url = `${this.$urlPrefix}admin/attributes/${this.attributeValue.attribute_id}/values/`
         },
 
         methods: {

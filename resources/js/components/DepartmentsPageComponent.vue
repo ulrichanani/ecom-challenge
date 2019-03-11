@@ -111,7 +111,7 @@
             },
 
             addRecord() {
-                axios.post(window.url_prefix + '/admin/departments', this.formData)
+                axios.post(this.$urlPrefix + 'admin/departments', this.formData)
                     .then(({data}) => {
                         this.errors = {}
                         this.resetForm()
@@ -128,7 +128,7 @@
             },
 
             updateRecord() {
-                let url = window.url_prefix + '/admin/departments/' + this.formData.department_id
+                let url = this.$urlPrefix + 'admin/departments/' + this.formData.department_id
                 axios.put(url, this.formData)
                     .then(({data}) => {
                         this.errors = {}
@@ -146,7 +146,7 @@
             },
 
             fetchRecords(page_url) {
-                page_url = page_url || window.url_prefix + '/admin/departments/list';
+                page_url = page_url || this.$urlPrefix + 'admin/departments/list';
                 axios.get(page_url)
                     .then(({data}) => {
                         this.departments = data.data

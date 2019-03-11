@@ -134,7 +134,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/products/`
+            this.base_url = `${this.$urlPrefix}admin/products/`
             this.fetchProduct()
             this.fetchAttributesAndValues()
             this.fetchCategories()
@@ -199,7 +199,7 @@
             },
 
             fetchAttributesAndValues() {
-                let page_url = window.url_prefix + '/admin/attributes-values'
+                let page_url = this.$urlPrefix + 'admin/attributes-values'
                 axios.get(page_url)
                     .then(({data}) => {
                         this.allAttributesValues = data.data
@@ -208,7 +208,7 @@
             },
 
             fetchCategories() {
-                let page_url = window.url_prefix + '/admin/categories/all'
+                let page_url = this.$urlPrefix + 'admin/categories/all'
                 axios.get(page_url)
                     .then(({data}) => {
                         this.allCategories = data.data

@@ -5,7 +5,7 @@
         <td class="actions">
             <div>
                 <a class="btn btn-primary btn-sm mb-1"
-                   v-bind:href="`${window.url_prefix}/admin/categories/${category.category_id}/products`">
+                   v-bind:href="`${this.$urlPrefix}admin/categories/${category.category_id}/products`">
                 Edit products</a>
                 <button class="btn btn-primary btn-sm mb-1" @click="editRecord">Edit</button>
                 <button class="btn btn-danger btn-sm mb-1" @click="deleteRecord">Delete</button>
@@ -33,7 +33,7 @@
         },
 
         created() {
-            this.base_url = `${window.url_prefix}/admin/departments/${this.category.department_id}/categories/`
+            this.base_url = `${this.$urlPrefix}admin/departments/${this.category.department_id}/categories/`
         },
 
         methods: {
@@ -41,7 +41,7 @@
                 if(!confirm('Are you sure?'))
                     return
 
-                axios.delete(window.url_prefix + '/admin/categories/' + this.category.category_id)
+                axios.delete(this.$urlPrefix + 'admin/categories/' + this.category.category_id)
                     .then(res => {
                         this.show = false
                         toastr.success('Category deleted succefully !')
