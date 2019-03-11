@@ -60240,7 +60240,7 @@ try {
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 window.toastr = __webpack_require__(/*! toastr */ "./node_modules/toastr/toastr.js");
-url_prefix = '/';
+url_prefix = '/turing/';
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
