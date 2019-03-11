@@ -70,7 +70,7 @@
                                 </ul>
                             </li>
                         @endforeach
-                        @if($DEPARTMENTS_CHUNKS[1]->count() > 0)
+                        @if(isset($DEPARTMENTS_CHUNKS[1]) && ($DEPARTMENTS_CHUNKS[1]->count() > 0))
                             <li class="nav-item dropdown submenu">
                                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                                    aria-haspopup="true" aria-expanded="false">

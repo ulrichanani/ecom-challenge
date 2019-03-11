@@ -6,7 +6,7 @@
         <div class="home_carousel_slider owl-carousel">
             <div class="item">
                 <div class="h_carousel_item">
-                    <img src="/img/home-carousel/home-c-1.jpg" alt="">
+                    <img src="{{ asset('/img/home-carousel/home-c-1.jpg') }}" alt="">
                     <div class="carousel_hover">
                         <h3>mens bag</h3>
                         <h4>We feature the best professional bags </h4>
@@ -18,7 +18,7 @@
             </div>
             <div class="item">
                 <div class="h_carousel_item">
-                    <img src="/img/home-carousel/home-c-2.jpg" alt="">
+                    <img src="{{ asset('/img/home-carousel/home-c-2.jpg') }}" alt="">
                     <div class="carousel_hover">
                         <h3>mens bag</h3>
                         <h4>We feature the best professional bags </h4>
@@ -30,7 +30,7 @@
             </div>
             <div class="item">
                 <div class="h_carousel_item">
-                    <img src="/img/home-carousel/home-c-3.jpg" alt="">
+                    <img src="{{ asset('/img/home-carousel/home-c-3.jpg') }}" alt="">
                     <div class="carousel_hover">
                         <h3>mens bag</h3>
                         <h4>We feature the best professional bags </h4>
@@ -42,7 +42,7 @@
             </div>
             <div class="item">
                 <div class="h_carousel_item">
-                    <img src="/img/home-carousel/home-c-4.jpg" alt="">
+                    <img src="{{ asset('img/home-carousel/home-c-4.jpg') }}" alt="">
                     <div class="carousel_hover">
                         <h3>mens bag</h3>
                         <h4>We feature the best professional bags </h4>
@@ -54,7 +54,7 @@
             </div>
             <div class="item">
                 <div class="h_carousel_item">
-                    <img src="/img/home-carousel/home-c-5.jpg" alt="">
+                    <img src="{{ asset('img/home-carousel/home-c-5.jpg') }}" alt="">
                     <div class="carousel_hover">
                         <h3>mens bag</h3>
                         <h4>We feature the best professional bags </h4>
@@ -74,7 +74,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="special_offer_item">
-                        <img class="img-fluid" src="/img/feature-add/special-offer-1.jpg" alt="">
+                        <img class="img-fluid" src="{{ asset('/img/feature-add/special-offer-1.jpg') }}" alt="">
                         <div class="hover_text">
                             <h4>Special Offer</h4>
                             <h5>Young Couple</h5>
@@ -84,7 +84,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="special_offer_item2">
-                        <img class="img-fluid" src="/img/feature-add/special-offer-2.jpg" alt="">
+                        <img class="img-fluid" src="{{ asset('img/feature-add/special-offer-2.jpg') }}" alt="">
                         <div class="hover_text">
                             <h5>girls bag</h5>
                             <a class="shop_now_btn" href="#">Shop Now</a>
@@ -114,7 +114,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 woman bags">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-1.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-1.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -130,7 +130,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 acc shoes">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-2.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-2.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -146,7 +146,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 woman shoes">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-3.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-3.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -162,7 +162,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 woman shoes">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-4.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-4.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -178,7 +178,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 woman shoes">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-5.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-5.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -194,7 +194,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 acc shoes bags">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-6.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-6.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -210,7 +210,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 acc bags">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-7.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-7.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -226,7 +226,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-6 acc bags">
                         <div class="l_product_item">
                             <div class="l_p_img">
-                                <img class="img-fluid" src="/img/product/l-product-8.jpg" alt="">
+                                <img class="img-fluid" src="{{ asset('img/product/l-product-8.jpg') }}" alt="">
                             </div>
                             <div class="l_p_text">
                                 <ul>
@@ -266,7 +266,7 @@
                         </div>
                         <div class="col-lg-6 col-sm-4">
                             <div class="p_list_img">
-                                <img src="/img/product/p-categories-list/product-l-1.jpg" alt="">
+                                <img src="{{ asset('img/product/p-categories-list/product-l-1.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -288,7 +288,7 @@
                         </div>
                         <div class="col-lg-6 col-sm-4">
                             <div class="p_list_img">
-                                <img src="/img/product/p-categories-list/product-l-2.jpg" alt="">
+                                <img src="{{ asset('img/product/p-categories-list/product-l-2.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -310,7 +310,7 @@
                         </div>
                         <div class="col-lg-6 col-sm-4">
                             <div class="p_list_img">
-                                <img src="/img/product/p-categories-list/product-l-3.jpg" alt="">
+                                <img src="{{ asset('img/product/p-categories-list/product-l-3.jpg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -333,7 +333,7 @@
                             <div class="f_product_inner">
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="/img/product/featured-product/f-p-1.jpg" alt="">
+                                        <img src="{{ asset('img/product/featured-product/f-p-1.jpg') }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <h4>Oxford Shirt</h4>
@@ -342,7 +342,7 @@
                                 </div>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="/img/product/featured-product/f-p-2.jpg" alt="">
+                                        <img src="{{ asset('img/product/featured-product/f-p-2.jpg') }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <h4>Puffer Jacket</h4>
@@ -351,7 +351,7 @@
                                 </div>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="/img/product/featured-product/f-p-3.jpg" alt="">
+                                        <img src="{{ asset('img/product/featured-product/f-p-3.jpg') }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <h4>Leather Bag</h4>
@@ -360,7 +360,7 @@
                                 </div>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <img src="/img/product/featured-product/f-p-4.jpg" alt="">
+                                        <img src="{{ asset('img/product/featured-product/f-p-4.jpg') }}" alt="">
                                     </div>
                                     <div class="media-body">
                                         <h4>Casual Shoes</h4>
@@ -382,7 +382,7 @@
                                 <div class="item shoes">
                                     <div class="fillter_product_item bags">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-1.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-1.jpg') }}" alt="">
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -394,7 +394,7 @@
                                 <div class="item woman shoes bags">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-2.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-2.jpg') }}" alt="">
                                             <h5 class="new">New</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -406,7 +406,7 @@
                                 <div class="item woman shoes">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-3.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-3.jpg') }}" alt="">
                                             <h5 class="discount">-10%</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -418,7 +418,7 @@
                                 <div class="item shoes">
                                     <div class="fillter_product_item bags">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-1.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-1.jpg') }}" alt="">
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -430,7 +430,7 @@
                                 <div class="item woman shoes bags">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-2.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-2.jpg') }}" alt="">
                                             <h5 class="new">New</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -442,7 +442,7 @@
                                 <div class="item woman shoes">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-3.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-3.jpg') }}" alt="">
                                             <h5 class="discount">-10%</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -454,7 +454,7 @@
                                 <div class="item shoes">
                                     <div class="fillter_product_item bags">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-1.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-1.jpg') }}" alt="">
                                             <h5 class="sale">Sale</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -466,7 +466,7 @@
                                 <div class="item woman shoes bags">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-2.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-2.jpg') }}" alt="">
                                             <h5 class="new">New</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -478,7 +478,7 @@
                                 <div class="item woman shoes">
                                     <div class="fillter_product_item">
                                         <div class="f_p_img">
-                                            <img src="/img/product/fillter-product/f-product-3.jpg" alt="">
+                                            <img src="{{ asset('/img/product/fillter-product/f-product-3.jpg') }}" alt="">
                                             <h5 class="discount">-10%</h5>
                                         </div>
                                         <div class="f_p_text">
@@ -506,7 +506,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-sm-6">
                         <div class="from_blog_item">
-                            <img class="img-fluid" src="/img/blog/from-blog/f-blog-1.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('img/blog/from-blog/f-blog-1.jpg') }}" alt="">
                             <div class="f_blog_text">
                                 <h5>fashion</h5>
                                 <p>Neque porro quisquam est qui dolorem ipsum</p>
@@ -516,7 +516,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="from_blog_item">
-                            <img class="img-fluid" src="/img/blog/from-blog/f-blog-2.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('img/blog/from-blog/f-blog-2.jpg') }}" alt="">
                             <div class="f_blog_text">
                                 <h5>fashion</h5>
                                 <p>Neque porro quisquam est qui dolorem ipsum</p>
@@ -526,7 +526,7 @@
                     </div>
                     <div class="col-lg-4 col-sm-6">
                         <div class="from_blog_item">
-                            <img class="img-fluid" src="/img/blog/from-blog/f-blog-3.jpg" alt="">
+                            <img class="img-fluid" src="{{ asset('img/blog/from-blog/f-blog-3.jpg') }}" alt="">
                             <div class="f_blog_text">
                                 <h5>fashion</h5>
                                 <p>Neque porro quisquam est qui dolorem ipsum</p>
