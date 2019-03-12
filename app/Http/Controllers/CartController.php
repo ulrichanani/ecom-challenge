@@ -54,8 +54,10 @@ class CartController extends Controller
         $data["buy_now"] = true;
 
         $attributes = $request->input('attributes');
-        $formattedAttributes = implode('/', array_keys($attributes));
-        $formattedAttributes .= ' : ' . implode('/', $attributes);
+        if(!empty(attributes)) {
+            $formattedAttributes = implode('/', array_keys($attributes));
+            $formattedAttributes .= ' : ' . implode('/', $attributes);
+        }
 
         ShoppingCart::current()->updateOrCreate([
             'cart_id' => $cartId,
