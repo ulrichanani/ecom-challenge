@@ -54,6 +54,7 @@ class CartController extends Controller
         $data["buy_now"] = true;
 
         $attributes = $request->input('attributes');
+        $formattedAttributes = '';
         if(!empty($attributes)) {
             $formattedAttributes = implode('/', array_keys($attributes));
             $formattedAttributes .= ' : ' . implode('/', $attributes);
